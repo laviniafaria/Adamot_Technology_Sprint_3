@@ -1,0 +1,478 @@
+/* margem */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+} 
+
+body {
+    background-color: #fff; /* cor do fundo do site*/ 
+    color: #333; /* cor da fonte*/
+    line-height: 1.6;/*espaçamento de linha */
+}
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+.container {
+    width: 80%; /*tamanho que a div .container vai ocupar*/ 
+    margin: 0 auto;/* centraliza a div .conteiner */
+}
+
+.paragrafo {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  
+}
+/*cabeçalho */
+header {
+    background-color: #8e44ad;/*cor de fundo*/
+    padding: 10px 0; /*tamanho do cabeçalho*/ 
+}
+
+nav {
+   
+    display: flex;/* deixa tudo no lugar*/
+    justify-content: space-between; /*deita o botão no lugar*/
+    align-items: center; /*deixa o botão no meio*/
+}
+
+.contato-link a { /*botao fale conosco*/
+    color: #fff; /*cor da fonte*/
+    text-decoration: none;/*tira a linha do link*/
+    background-color: #6a3093;/*cor do botão*/
+    padding: 5px 10px;/*margem do botão*/
+    border-radius: 3px;/*deixa a borda redonda*/
+    font-size: 14px;/*tamanho da fonte*/
+    position: relative;/*faz o botão ficar no lugar que vc quer*/
+    left:350px;/*define o local que vc quer que o botão fique*/
+}
+.login-link a {/*botão login*/
+    color: #fff;/*cor da fonte*/
+    text-decoration: none;/*tira a linha do link*/
+    background-color: #450d6d;/*cor do botão*/
+    padding: 5px 10px;/*margem do botão*/
+    border-radius: 3px;/*deixa a borda redonda*/
+    font-size: 14px;/*tamanho da fonte*/
+}
+
+/* Seção Principal  */
+
+.hero {
+    padding: 40px 0;/*Define o espaçamento e fundo da seção.*/
+    background-color: #fff;/* cor de fundo*/
+}
+
+.texto_pri {
+    font-family: "arvo", serif;
+    font-weight: 700px;
+    font-style: normal;
+    font-size: 50px;
+}
+.hero .container {/**/
+    display: flex;/**/
+    align-items: center;/**/
+    justify-content: space-between;/**/
+}
+
+.hero-content {
+    flex: 1;/**/
+    padding-right: 30px;/**/
+}
+
+.hero-content h2 {/**/
+    font-size: 28px;/**/
+    margin-bottom: 15px;/**/
+    color: #333;/**/
+}
+
+.hero-content span {/**/
+    color: #6a3093;/**/
+    font-weight: bold;/**/
+}
+
+.hero-content p {/**/
+    margin-bottom: 20px;/**/
+    max-width: 500px;/**/
+    color: #666;/**/
+    font-size: 14px;/**/
+}
+
+.btn {
+    display: inline-block;/**/
+    background-color: #6a3093;/**/
+    color: white;/**/
+    padding: 8px 16px;/**/
+    border-radius: 5px;/**/
+    text-decoration: none;/**/
+    font-weight: bold;/**/
+    transition: background-color 0.3s;/**/
+    font-size: 14px;/**/
+    border: none;/**/
+    cursor: pointer;/**/
+    position: relative;/**/
+    left: 170px;/**/
+    top: 30px;/**/
+}
+
+
+.hero-image {/**/
+    flex: 1;/**/
+    text-align: right;/**/
+}
+
+.hero-image img {/**/   
+    max-width: 80%;/**/
+    border-radius: 30   px;/**/
+}
+
+
+.sobrenos {/**/
+    padding : 80px 0;/**/
+    background-color: #e6d7f2;/**/
+    justify-content: start;
+    flex-direction: row;
+    align-self: start;
+    padding-bottom: 150px;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+
+}
+
+.imagem_sobre {
+    padding-left: 200px;
+}
+.container{
+    margin-left: 60px;
+
+}
+.sobrenos h2 {
+    text-align: center;
+    padding: -50px;
+    text-align: start;
+    
+}
+
+/* Services Section */
+.services {/**/
+    padding: 30px 0;/**/
+    background-color: #e6d7f2;/**/
+}
+
+.services h2 {/**/
+    text-align: left;/**/
+    margin-bottom: 15px;/**/
+    color: #6a3093;/**/
+    position: relative;/**/
+    right: 200px;/**/
+    bottom: 58px;
+    align-items: start;
+}
+
+.service-cards {/**/
+    text-align: left;/**/
+    max-width: 600px;/**/
+    margin: 0 0 20px auto;/**/
+    color: black;/**/
+    font-size: 16px;/**/
+    position: relative;/**/
+    right: 30px;/**/
+    bottom: 40px;/**/
+    border-radius: 30px;/**/
+}
+
+.oferece{/**/
+    text-align: center;/**/
+    position: relative;/**/
+    left: 1000px;/**/
+    bottom:60px;/**/
+    font-size: 16px;/**/
+    max-width: 400px;/**/
+}
+
+.service-cards {/**/
+    display: flex;/**/
+    justify-content: flex-end;/**/
+    gap: 20px;/**/
+}
+
+.service-card {/**/
+    background-color: #fff;/**/
+    border-radius: 5px;/**/
+    padding: 20px;/**/
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);/**/
+    flex: 0 1 250px;/**/
+}
+
+.service-card h3 {/**/
+    color: #6a3093;/**/
+    margin-bottom: 10px;/**/
+    font-size: 16px;/**/
+}
+
+.service-card p {/**/
+    font-size: 14px;/**/
+    color: #666;/**/
+}
+
+/* Simulador */
+
+.simulator-box {
+    width: 700%; /* Ocupa 90% da largura da tela */
+    max-width: 950px; /* Limita a largura máxima do box */
+    margin: 50px auto; /* Adiciona margem acima/abaixo e centraliza horizontalmente */
+    padding: 30px; /* Espaçamento interno */
+    background-color: #ffffff; /* Fundo branco do box */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+    text-align: center; /* Centraliza o texto (títulos, parágrafos) */
+    font-family: Arial, sans-serif; /* Fonte para todo o conteúdo */
+}
+
+
+.simulator-box h2 {
+    color: #6a3093; /* Cor  */
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: bold; /* Deixa o título em negrito */
+}
+
+.simulator-box p {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 30px; /* Espaço após a descrição */
+}
+
+.input-group {
+    margin-bottom: 20px; /* Espaço entre os grupos de input */
+}
+
+.simulator-box label {
+    display: block; /* Garante que o label ocupe sua própria linha */
+    text-align: center; /* Centraliza o texto do label */
+    margin-bottom: 10px; /* Espaço entre o label e o input */
+    font-size: 14px;
+    color: #555;
+}
+
+.simulator-box input[type="text"], 
+.simulator-box input[type="number"] {
+    width: 70%; /* Largura dos campos, centralizados */
+    padding: 10px;
+    background-color: #f0e6ff; /* Fundo roxo claro (como na imagem) */
+    border: 1px solid #ccaaff; /* Borda roxa clara */
+    border-radius: 4px;
+    text-align: center; /* Centraliza o placeholder/texto digitado */
+    color: #333;
+    font-size: 16px;
+}
+
+.simular {
+    width: 70%; /* A mesma largura dos campos de input */
+    padding: 12px;
+    background-color: #6a3093;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+
+
+/* Contato */
+.contact {/**/
+    padding: 40px 0;/**/
+    background-color: rgba(63, 25, 96, 0.6);/**/
+    color: #fff;/**/
+}
+
+
+.contact .container {/**/
+    max-width: 600px;/**/
+
+}
+
+.contact h2 {/**/
+    margin-bottom: 20px;/**/
+    text-align: left;/**/
+}
+
+.form-group {/**/
+    margin-bottom: 15px;/**/
+}
+
+.form-group input,/**/
+.form-group textarea {/**/
+    width: 100%;/**/
+    padding: 12px;/**/
+    border: none;/**/
+    border-radius: 5px;/**/
+    background-color: rgba(101, 50, 138, 1);/**/
+    color: #fff;/**/
+}
+
+.form-group input::placeholder,/**/
+.form-group textarea::placeholder {/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+}
+
+.form-group textarea {/**/
+    height: 120px;/**/
+    resize: vertical;/**/
+}
+
+ .btn {/**/
+    background-color: #6a3093;/**/
+    border: none;/**/
+    cursor: pointer;/**/
+    margin: 0 auto;/**/
+    padding: 10px 20px;/**/
+    position: relative;/**/
+    left: 200px;/**/
+    bottom: 40px;/**/
+}
+
+
+/* Footer */
+footer {/**/
+    background-color: rgba(63, 25, 96, 1);/**/
+    color: #fff;/**/
+    padding: 30px 0 10px;/**/
+    border-top: 1px solid rgba(255, 255, 255, 0.1);/**/
+}
+
+footer .container {/**/
+    display: flex;/**/
+    justify-content: space-between;/**/
+    align-items: flex-start;/**/
+    margin-bottom: 20px;/**/
+}
+
+img {/**/
+    max-width: 160px;/**/
+    position: relative;/**/
+    top: 8px;/**/
+    right: 50px/**/
+}
+
+.footer-info {/**/
+    display: flex;/**/
+    gap: 40px;/**/
+}
+
+.footer-menu h3,/**/
+.footer-contact h3 {/**/
+    margin-bottom: 10px;/**/
+    color: #fff;/**/
+    font-size: 16px;/**/
+}
+
+.footer-menu ul {/**/
+    list-style: none;/**/
+}
+
+.footer-menu ul li {/**/
+    margin-bottom: 5px;/**/
+}
+
+.footer-menu ul li a,/**/
+.footer-contact a {/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+    text-decoration: none;/**/
+    transition: color 0.3s;/**/
+    font-size: 14px;/**/
+}
+
+.footer-menu ul li a:hover,/**/
+.footer-contact a:hover {/**/
+    color: #fff;/**/
+}
+
+.copyright {/**/
+    border-top: 1px solid rgba(255, 255, 255, 0.1);/**/
+    padding-top: 15px;/**/
+    text-align: center;/**/
+    font-size: 12px;/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+    display: flex;/**/
+    justify-content: space-between;/**/
+    flex-wrap: wrap;/**/
+}
+
+.footer-links a {/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+    text-decoration: none;/**/
+    margin-left: 15px;/**/
+    transition: color 0.3s;/**/
+    font-size: 12px;/**/
+}
+
+.footer-links a:hover {/**/
+    color: #fff;/**/
+}
+
+/* Responsividade */
+@media (max-width: 768px) {/**/
+    .hero .container {/**/
+        flex-direction: column;/**/
+    }
+    
+    .hero-content {/**/
+        padding-right: 0;/**/
+        margin-bottom: 30px;/**/
+        text-align: center;/**/
+    }
+    
+    .service-cards {/**/
+        flex-direction: column;/**/
+        align-items: center;/**/
+    	}    
+    /*poe a poora da borda*/
+    .services h2,/**/
+    .services > p {/**/
+        text-align: center;/**/
+        margin-left: auto;/**/
+        margin-right: auto;/**/
+    }
+    
+    footer .container,/**/
+    .footer-info {/**/
+        flex-direction: column;/**/
+        text-align: center;/**/
+        align-items: center;/**/
+    }
+    
+    .footer-logo,/**/
+    .footer-menu,/**/
+    .footer-contact {/**/
+        margin-bottom: 20px;/**/
+    }
+    
+    .copyright {/**/
+        flex-direction: column;/**/
+    }
+    
+    .footer-links {/**/
+        margin-top: 10px;/**/
+    }
+    
+    .footer-links a {/**/
+        margin: 0 5px;/**/
+    }
+}
+.gato{
+    position: relative;/**/
+    left: 620px ;/**/
+    top: -15px;/**/
+}
+.container > h2{/**/
+    position:relative;/**/
+    right: 5px;/**/
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <header>
+    <h1>Dashboard de Fluxo de Pessoas</h1>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <p><a href="#">Dashboard Geral</a></p>
+      <p><a href="#">Análise por setor</a></p>
+      <p><a href="#">Chamados</a></p>
+      <p><a href="#">Relatórios</a></p>
+    </aside>
+
+    <div class="content">
+      <div class="welcome-bar">
+       <span id="welcomeMsg"></span>
+      </div>
+
+      <section class="kpis">
+        <div class="card">
+          <h3>Total de Visitantes</h3>
+          <p id="totalVisitantes">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Ocupação Atual</h3>
+          <p id="ocupacaoAtual">0%</p>
+        </div>
+
+        <div class="card">
+          <h3>Pico de Fluxo</h3>
+          <p id="picoFluxo">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Média por Hora</h3>
+          <p id="mediaHora">0</p>
+        </div>
+      </section>
+
+      <div class="graphs-container">
+        <div class="chart-container">
+          <h2>Fluxo ao longo do dia</h2>
+          <canvas id="linechart"></canvas>
+        </div>
+
+        <div class="heatmap-container">
+          <h2>Mapa de Calor</h2>
+          <p></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+
+     const usuario = localStorage.getItem("usuarioLogado");
+
+  if (usuario) {
+    document.getElementById("welcomeMsg").textContent = `Bem-vindo, ${usuario}!`;
+  } else {
+    window.location.href = "login.html";
+  }
+
+
+    const ctx = document.getElementById('linechart').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '16:00', '17:00', '18:00', '19:00'],
+        datasets: [{
+          label: 'Pessoas por hora',
+          data: [100, 80, 150, 74, 300, 239, 200],
+          borderWidth: 2,
+          backgroundColor: "rgba(138,43,226,0.2)",
+          borderColor: "violet",
+          tension: 0.3,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
