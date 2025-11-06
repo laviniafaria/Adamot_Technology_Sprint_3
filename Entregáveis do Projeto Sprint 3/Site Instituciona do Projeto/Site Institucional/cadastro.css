@@ -1,0 +1,108 @@
+    /*cs*/
+        * {/*margem*/
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font: normal 20px Arial;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-color: #6e4c7f18;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+
+        .cartao_principal {
+            position: relative; 
+            left: 200px;
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 127px rgba(120, 144, 156, 0.4); 
+            overflow: hidden;
+            margin: 0 auto;
+            min-height: 1000px; 
+            padding-bottom: 80px; 
+        }
+        
+        
+        /*deixa todo texto no centro*/
+     .cadastro {
+            text-align: center;
+        }
+        
+     .cadastro h1 {
+             font-size: 36px;
+            font-weight: 700;
+            color: #8A2BE2;
+            margin-bottom: 10px;
+            position: relative;
+            right: 720px;
+        }
+        
+     .cadastro h2, p, .cadastro p {
+           color: #78909C;
+            margin-bottom: 35px;
+            font-size: 20px;
+            line-height: 1.5;
+            text-align: center;
+            position: relative;
+            right: 720px;
+        }
+        
+        /* Inputs */
+     .cadastro input {
+           width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            border: 1px solid #CFD8DC;
+            border-radius: 8px;
+            font-size: 17px;
+            text-align: left;
+            position: relative;
+            right:720px;
+        }
+        
+      .cadastro input:focus {
+            border-color: #8A2BE2;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            outline: none;
+        }
+        
+        /* Botões */
+     .cadastro button {
+            width: 70%;
+            padding: 16px;
+            background: #8A2BE2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 6px 15px rgba(138, 43, 226, 0.4);
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+            position: relative;
+            right:720px;
+        }
+        
+        
+      .cadastro button:hover {
+            background-color: #6A1B9A;
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* (usada para entrar e limpar) */
+        .limpar .entrar{
+            margin-top: 25px;
+            font-weight: 600;
+            font-size: 18px;
+        }

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/institucional/image__2_-removebg-preview.png" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Adamot</title>
+</head>
+
+<body>
+    <header>
+        <img style="width: 300px" src="/institucional/logo1.png" alt="" />
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <h3>
+                <a href="dashboard.html">
+                    <img style="width: 20px" src="assets/painel.png" alt="dashemoji" />
+                    Dashboard
+                </a>
+            </h3>
+
+            <h3 class="ativo">
+                <a href="sensores.html">
+                    <img style="width: 20px" src="assets/sensor.png" alt="sensor" />
+                    Sensores
+                </a>
+            </h3>
+
+            <h3>
+                <a href="chamados.html">
+                    <img style="width: 20px" src="assets/atendimento-ao-cliente.png" alt="chamadoEmoji" />
+                    Chamados
+                </a>
+            </h3>
+
+            <h3>
+                <a href="relatorios.html">
+                    <img style="width: 20px" src="assets/relatorio.png" alt="sensorEmoji" />
+                    Relatórios
+                </a>
+            </h3>
+
+            <h4>
+                <a href="/Projeto/Site Estatico/site_adamot/Site_final/site.html">
+                    <img style="width: 15px" src="assets/sair.png" alt="exit" />
+                    Sair
+                </a>
+            </h4>
+        </aside>
+
+        <div class="content1">
+            <div class="welcome-bar">
+                <span id="welcomeMsg"></span>
+            </div>
+            <section class="kpis">
+
+                <button onclick="EntA()" class="card botSen" id="botA">
+                    <h3>Entrada A</h3>
+                </button>
+
+                <button onclick="EntB()" class="card botSen" id="botB">
+                    <h3>Entrada B</h3>
+                </button>
+
+                <button onclick="EntC()" class="card botSen" id="botC">
+                    <h3>Entrada C</h3>
+                </button>
+            </section>
+
+            <div style="display: none;" id="GraEntA">
+                <div class="graphs-container">
+                    <div class="chart-container">
+                        <h2>Fluxo atual</h2>
+                        <canvas id="linechart"></canvas>
+                        <div>
+                            <span style="opacity: 0.5;">Horários</span>
+                        </div>
+                    </div>
+                    <div class="graphs-container">
+                        <div class="heatmap-container">
+                            <h2>Mapa de calor</h2>
+                            <div class="calorento" id="MapaA"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="GraEntB">
+                <div class="graphs-container">
+                    <div class="chart-container">
+                        <h2>Fluxo atual</h2>
+                        <canvas id="linechartB"></canvas>
+                        <div>
+                            <span style="opacity: 0.5;">Horários</span>
+                        </div>
+                    </div>
+                    <div class="graphs-container">
+                        <div class="heatmap-container">
+                            <h2>Mapa de calor</h2>
+                            <div class="calorento" id="MapaB"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+<script>
+    const usuario = localStorage.getItem("usuarioLogado");
+
+    if (usuario) {
+        document.getElementById(
+            "welcomeMsg"
+        ).textContent = `Bem-vindo, ${usuario}!`;
+    } else {
+        window.location.href = "/Site_estatico/login_cadastro/login.html";
+    }
+
+    function EntA() {
+        botA.style = "background-color: #cacaca;"
+        botB.style = "background-color: #ffffff;"
+        botC.style = "background-color: #ffffff;"
+        GraEntA.style = "display: block;"
+        GraEntB.style = "display: none;"
+
+    }
+
+    function EntB() {
+        botB.style = "background-color: #cacaca;"
+        botA.style = "background-color: #ffffff;"
+        botC.style = "background-color: #ffffff;"
+        GraEntA.style = "display: none;"
+        GraEntB.style = "display: blcok;"
+    }
+
+    function EntC() {
+        botC.style = "background-color: #cacaca;"
+        botB.style = "background-color: #ffffff;"
+        botA.style = "background-color: #ffffff;"
+        GraEntA.style = "display: none;"
+        GraEntB.style = "display: none;"
+    }
+
+    const ctx = document.getElementById('linechart').getContext('2d');
+    const ctxB = document.getElementById('linechartB').getContext('2d');
+
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '16:00', '17:00', '18:00', '19:00'],
+            datasets: [{
+                label: 'Número de Pessoas',
+                data: [25, 18, 60, 10, 150, 50, 100],
+                borderWidth: 2,
+                backgroundColor: "rgba(138,43,226,0.2)",
+                borderColor: "violet",
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+ new Chart(ctxB, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '16:00', '17:00', '18:00', '19:00'],
+            datasets: [{
+                label: 'Número de Pessoas',
+                data: [20, 15, 30, 20, 100, 60, 50],
+                borderWidth: 2,
+                backgroundColor: "rgba(138,43,226,0.2)",
+                borderColor: "violet",
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+
+
+
+    anychart.onDocumentReady(function () {
+        // create a heatmap
+        var chart = anychart.heatMap(getDataA());
+        // set a custom color scale
+        var colorScale = anychart.scales.ordinalColor();
+        colorScale.ranges([
+            { less: 50, color: "#B0D8A4" },
+            { from: 50, to: 100, color: "#FEE191" },
+            { from: 100, to: 150, color: "#FD8060" },
+            { from: 150, to: 200, color: "#F07355" },
+            { greater: 200, color: "#CC333F" }
+        ]);
+        chart.colorScale(colorScale);
+        // style the coloring in the hovered state
+        chart
+            .hovered()
+            .fill(function () {
+                return anychart.color.darken(this.sourceColor, 0.25);
+            });
+        // hide the labels
+        chart.labels(false);
+        // customize the axes
+        chart.xAxis().stroke(null);
+        chart.yAxis().stroke(null);
+        chart.yAxis().labels().padding([0, 10, 0, 0]);
+        chart.xAxis().labels().padding([0, 0, 10, 0]);
+        // set the tooltip
+        chart.tooltip().title().useHtml(true);
+        chart
+            .tooltip()
+            .useHtml(true)
+            .titleFormat(function () {
+                return "Pessoas - " + this.heat;
+            })
+            .format(function () {
+                return (
+                    '<span style="color: #CECECE">Coordenada X </span>' +
+                    this.x +
+                    "<br/>" +
+                    '<span style="color: #CECECE">Coordenada Y </span>' +
+                    this.y
+                );
+            });
+        // name the heatmap
+        chart
+            .title()
+            .enabled(false)
+            .text("Mapa de Calor do Shopping Y")
+            .padding([0, 0, 20, 0]);
+        // set the container for the heatmap
+        chart.container("MapaA");
+        // draw the heatmap
+        chart.draw();
+    });
+    // add the data
+    function getDataA() {
+        return [
+            { x: "Seg", y: "00:00", heat: 10 },
+            { x: "Ter", y: "00:00", heat: 10 },
+            { x: "Qua", y: "00:00", heat: 10 },
+            { x: "Qui", y: "00:00", heat: 10 },
+            { x: "Sex", y: "00:00", heat: 15 },
+            { x: "Sab", y: "00:00", heat: 20 },
+            { x: "Dom", y: "00:00", heat: 15 },
+
+            { x: "Seg", y: "03:00", heat: 10 },
+            { x: "Ter", y: "03:00", heat: 10 },
+            { x: "Qua", y: "03:00", heat: 10 },
+            { x: "Qui", y: "03:00", heat: 10 },
+            { x: "Sex", y: "03:00", heat: 20 },
+            { x: "Sab", y: "03:00", heat: 30 },
+            { x: "Dom", y: "03:00", heat: 20 },
+
+            { x: "Seg", y: "06:00", heat: 40 },
+            { x: "Ter", y: "06:00", heat: 50 },
+            { x: "Qua", y: "06:00", heat: 50 },
+            { x: "Qui", y: "06:00", heat: 40 },
+            { x: "Sex", y: "06:00", heat: 60 },
+            { x: "Sab", y: "06:00", heat: 80 },
+            { x: "Dom", y: "06:00", heat: 40 },
+
+            { x: "Seg", y: "09:00", heat: 100 },
+            { x: "Ter", y: "09:00", heat: 110 },
+            { x: "Qua", y: "09:00", heat: 110 },
+            { x: "Qui", y: "09:00", heat: 90 },
+            { x: "Sex", y: "09:00", heat: 120 },
+            { x: "Sab", y: "09:00", heat: 140 },
+            { x: "Dom", y: "09:00", heat: 100 },
+
+            { x: "Seg", y: "12:00", heat: 150 },
+            { x: "Ter", y: "12:00", heat: 160 },
+            { x: "Qua", y: "12:00", heat: 160 },
+            { x: "Qui", y: "12:00", heat: 140 },
+            { x: "Sex", y: "12:00", heat: 170 },
+            { x: "Sab", y: "12:00", heat: 210 },
+            { x: "Dom", y: "12:00", heat: 150 },
+
+            { x: "Seg", y: "15:00", heat: 160 },
+            { x: "Ter", y: "15:00", heat: 170 },
+            { x: "Qua", y: "15:00", heat: 170 },
+            { x: "Qui", y: "15:00", heat: 150 },
+            { x: "Sex", y: "15:00", heat: 180 },
+            { x: "Sab", y: "15:00", heat: 220 },
+            { x: "Dom", y: "15:00", heat: 160 },
+
+            { x: "Seg", y: "18:00", heat: 130 },
+            { x: "Ter", y: "18:00", heat: 140 },
+            { x: "Qua", y: "18:00", heat: 140 },
+            { x: "Qui", y: "18:00", heat: 120 },
+            { x: "Sex", y: "18:00", heat: 160 },
+            { x: "Sab", y: "18:00", heat: 200 },
+            { x: "Dom", y: "18:00", heat: 130 },
+
+            { x: "Seg", y: "21:00", heat: 60 },
+            { x: "Ter", y: "21:00", heat: 70 },
+            { x: "Qua", y: "21:00", heat: 70 },
+            { x: "Qui", y: "21:00", heat: 50 },
+            { x: "Sex", y: "21:00", heat: 80 },
+            { x: "Sab", y: "21:00", heat: 100 },
+            { x: "Dom", y: "21:00", heat: 60 },
+        ];
+    }
+
+        anychart.onDocumentReady(function () {
+        // create a heatmap
+        var chart = anychart.heatMap(getDataB());
+        // set a custom color scale
+        var colorScale = anychart.scales.ordinalColor();
+        colorScale.ranges([
+            { less: 50, color: "#B0D8A4" },
+            { from: 50, to: 100, color: "#FEE191" },
+            { from: 100, to: 150, color: "#FD8060" },
+            { from: 150, to: 200, color: "#F07355" },
+            { greater: 200, color: "#CC333F" }
+        ]);
+        chart.colorScale(colorScale);
+        // style the coloring in the hovered state
+        chart
+            .hovered()
+            .fill(function () {
+                return anychart.color.darken(this.sourceColor, 0.25);
+            });
+        // hide the labels
+        chart.labels(false);
+        // customize the axes
+        chart.xAxis().stroke(null);
+        chart.yAxis().stroke(null);
+        chart.yAxis().labels().padding([0, 10, 0, 0]);
+        chart.xAxis().labels().padding([0, 0, 10, 0]);
+        // set the tooltip
+        chart.tooltip().title().useHtml(true);
+        chart
+            .tooltip()
+            .useHtml(true)
+            .titleFormat(function () {
+                return "Pessoas - " + this.heat;
+            })
+            .format(function () {
+                return (
+                    '<span style="color: #CECECE">Coordenada X </span>' +
+                    this.x +
+                    "<br/>" +
+                    '<span style="color: #CECECE">Coordenada Y </span>' +
+                    this.y
+                );
+            });
+        // name the heatmap
+        chart
+            .title()
+            .enabled(false)
+            .text("Mapa de Calor do Shopping Y")
+            .padding([0, 0, 20, 0]);
+        // set the container for the heatmap
+        chart.container("MapaB");
+        // draw the heatmap
+        chart.draw();
+    });
+    // add the data
+    function getDataB() {
+        return [
+    { x: "Seg", y: "00:00", heat: 10 },
+    { x: "Ter", y: "00:00", heat: 10 },
+    { x: "Qua", y: "00:00", heat: 10 },
+    { x: "Qui", y: "00:00", heat: 10 },
+    { x: "Sex", y: "00:00", heat: 12 },
+    { x: "Sab", y: "00:00", heat: 15 },
+    { x: "Dom", y: "00:00", heat: 12 },
+
+    { x: "Seg", y: "03:00", heat: 10 },
+    { x: "Ter", y: "03:00", heat: 10 },
+    { x: "Qua", y: "03:00", heat: 10 },
+    { x: "Qui", y: "03:00", heat: 10 },
+    { x: "Sex", y: "03:00", heat: 15 },
+    { x: "Sab", y: "03:00", heat: 25 },
+    { x: "Dom", y: "03:00", heat: 15 },
+
+    { x: "Seg", y: "06:00", heat: 30 },
+    { x: "Ter", y: "06:00", heat: 35 },
+    { x: "Qua", y: "06:00", heat: 35 },
+    { x: "Qui", y: "06:00", heat: 30 },
+    { x: "Sex", y: "06:00", heat: 40 },
+    { x: "Sab", y: "06:00", heat: 60 },
+    { x: "Dom", y: "06:00", heat: 30 },
+
+    { x: "Seg", y: "09:00", heat: 70 },
+    { x: "Ter", y: "09:00", heat: 75 },
+    { x: "Qua", y: "09:00", heat: 75 },
+    { x: "Qui", y: "09:00", heat: 65 },
+    { x: "Sex", y: "09:00", heat: 80 },
+    { x: "Sab", y: "09:00", heat: 100 },
+    { x: "Dom", y: "09:00", heat: 70 },
+
+    { x: "Seg", y: "12:00", heat: 120 },
+    { x: "Ter", y: "12:00", heat: 130 },
+    { x: "Qua", y: "12:00", heat: 130 },
+    { x: "Qui", y: "12:00", heat: 110 },
+    { x: "Sex", y: "12:00", heat: 140 },
+    { x: "Sab", y: "12:00", heat: 200 },
+    { x: "Dom", y: "12:00", heat: 120 },
+
+    { x: "Seg", y: "15:00", heat: 130 },
+    { x: "Ter", y: "15:00", heat: 140 },
+    { x: "Qua", y: "15:00", heat: 140 },
+    { x: "Qui", y: "15:00", heat: 120 },
+    { x: "Sex", y: "15:00", heat: 150 },
+    { x: "Sab", y: "15:00", heat: 200 },
+    { x: "Dom", y: "15:00", heat: 130 },
+
+    { x: "Seg", y: "18:00", heat: 100 },
+    { x: "Ter", y: "18:00", heat: 110 },
+    { x: "Qua", y: "18:00", heat: 110 },
+    { x: "Qui", y: "18:00", heat: 90 },
+    { x: "Sex", y: "18:00", heat: 130 },
+    { x: "Sab", y: "18:00", heat: 180 },
+    { x: "Dom", y: "18:00", heat: 100 },
+
+    { x: "Seg", y: "21:00", heat: 50 },
+    { x: "Ter", y: "21:00", heat: 55 },
+    { x: "Qua", y: "21:00", heat: 55 },
+    { x: "Qui", y: "21:00", heat: 40 },
+    { x: "Sex", y: "21:00", heat: 65 },
+    { x: "Sab", y: "21:00", heat: 90 },
+    { x: "Dom", y: "21:00", heat: 50 },
+];
+    }
+
+
+</script>
+
+</html>
