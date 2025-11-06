@@ -1,4 +1,4 @@
-# ADAMOT Technology
+# Adanot Technology
 
 <img src='https://eu.beasensors.com/thumbor/oog2JENNqsE3p5cmdRreOcn07w4=/fit-in/1024x/--/uploads/2016/10/header-sliding-doors-orascan-scaled.jpg'>
 
