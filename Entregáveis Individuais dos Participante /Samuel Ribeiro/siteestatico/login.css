@@ -1,0 +1,160 @@
+    /*css login*/
+        * {/*margem*/
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font: normal 20px Arial;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-color: #6e4c7f18;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Oculta os inputs radio*/
+        input[type="radio"] {
+            display: none;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cartao_principal {
+            position: relative; 
+            max-width: 700px;
+            width: 100%;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(120, 144, 156, 0.4); 
+            overflow: hidden;
+            margin: 0 auto;
+            min-height: 400px; 
+            padding-bottom: 80px; 
+        }
+        
+        .troca_de_login_cadastro {
+            display: flex;
+            background-color: #6a3093;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .botao_troca {
+            flex: 3;
+            padding: 18px 0;
+            font-weight: 1000;
+            color: white;
+            transition: all 0.1s;
+            border-bottom: 4px solid transparent;
+            opacity: 0.8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #tab-login:checked ~ .cartao_principal .troca_de_login_cadastro .botao_troca[for="tab-login"],
+        #tab-cadastro:checked ~ .cartao_principal .troca_de_login_cadastro .botao_troca[for="tab-cadastro"] {
+            opacity: 1;
+            border-bottom-color: #8A2BE2; 
+            background-color: #7934b0; 
+        }
+
+        
+        /* esconde o cadastro e login */
+        .esconde_login, .esconde_cadastro {
+            position: absolute; 
+            width: 100%;
+            top: 0; 
+            left: 0;
+            padding: 60px 80px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            padding-top: 100px;/* espaçamento */
+            padding-bottom: 120px;
+        }
+        
+        #tab-login:checked ~ .cartao_principal .esconde_login {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0); 
+            position: relative; 
+        }
+
+        #tab-cadastro:checked ~ .cartao_principal .esconde_cadastro {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0); 
+            position: relative; 
+        }
+
+        /*deixa todo texto no centro*/
+        .login, .cadastro {
+            text-align: center;
+        }
+        
+        .login h1, .cadastro h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #8A2BE2;
+            margin-bottom: 10px;
+        }
+        
+        .login h2, .cadastro h2, .login p, .cadastro p {
+            color: #78909C;
+            margin-bottom: 35px;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        /* Inputs */
+        .login input, .cadastro input {
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            border: 1px solid #CFD8DC;
+            border-radius: 8px;
+            font-size: 17px;
+            text-align: left;
+        }
+        
+        .login input:focus, .cadastro input:focus {
+            border-color: #8A2BE2;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            outline: none;
+        }
+        
+        /* Botões */
+        .login button, .cadastro button {
+            width: 70%;
+            padding: 16px;
+            background: #8A2BE2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 6px 15px rgba(138, 43, 226, 0.4);
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+        
+        .login button:hover, .cadastro button:hover {
+            background-color: #6A1B9A;
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* (usada para entrar e limpar) */
+        .limpar .entrar{
+            margin-top: 25px;
+            font-weight: 600;
+            font-size: 18px;
+        }

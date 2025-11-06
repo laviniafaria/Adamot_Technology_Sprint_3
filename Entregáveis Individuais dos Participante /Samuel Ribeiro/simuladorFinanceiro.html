@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro - ADAMOT</h1>
+
+    Setor de Referência: <input type="text" id="iptSetor"> <br>
+    (Ex: Entrada principal) <br><br>
+   
+    Valor atual do aluguel por m2: <input type="number" id="iptAluguel"><br><br>
+
+    Em quanto % você pretende aumentar seu lucro: 
+    <input type="Number" id="iptPorcent" placeholder="Ex:27">
+
+    <button onclick="calcularOperação()">SIMULAR OPERAÇÃO</button>
+
+    <div id="mensagem"></div>
+
+</body>
+<script>
+    function calcularOperação() {
+        var valorAluguel = Number(iptAluguel.value);
+        var setor = iptSetor.value;
+        var porcentagem = Number(iptPorcent.value / 100)
+        
+        
+
+        if (iptAluguel.value == '' || iptAluguel.value < 0) {
+            alert('Informe o valor do aluguel. OBS: valor deve ser maior do que zero.')
+        }
+        if (setor == '') {
+            alert('Informe o setor de referência')
+        }
+        if (porcentagem == '') {
+            alert('Valor da porcentagem deve ser maior do que zero')
+        }
+        else {
+            var valorExtra = valorAluguel * porcentagem
+
+           mensagem.innerHTML = `
+    <h3>📊 Resultado da Simulação !!!</h3>
+    <p>O <strong>Projeto de Monitoramento do Fluxo de Pessoas</strong> fornece dados estratégicos que permitem identificar setores com maior potencial de valorização.</p>
+    <p>No setor <strong>${setor}</strong>, ao aplicar o percentual definido (<strong>${(porcentagem*100).toFixed(0)}%</strong>), o sistema aponta um ganho adicional de <strong>R$ ${valorExtra.toFixed(2)}</strong> por m  <sup>2</sup>.</p>
+    <p>✅ Essa visão só é possível graças ao monitoramento inteligente do fluxo de clientes, que permite reajustes embasados em dados reais.</p>
+    <p><em>Assim, cada decisão deixa de ser um risco e passa a ser uma oportunidade concreta de aumentar a rentabilidade do shopping.</em></p>
+`;
+
+        }
+    }
+</script>
+
+</html>

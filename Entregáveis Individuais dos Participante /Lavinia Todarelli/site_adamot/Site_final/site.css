@@ -1,0 +1,501 @@
+/* margem */
+
+/*
+cor header #8e44ad
+cor botão login #450d6d
+cor botao cadastro #6a3093
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial; /*fonte do site*/
+} 
+
+body {
+    background-color: #fff; /* cor do fundo do site*/ 
+    color: #333; /* cor da fonte*/
+    line-height: 1.6;/*espaçamento de linha */
+    font: normal 20px Arial;
+}
+
+/*cabeçalho */
+header {
+    background-color: #8e44ad;/*cor de fundo*/
+    padding: 25px 0; /*tamanho do cabeçalho*/ 
+}
+
+nav {
+   
+    display: flex;/* deixa tudo no lugar*/
+    justify-content: space-between; /*deita o botão no lugar*/
+    align-items: center; /*deixa o botão no meio*/
+}
+.logo{
+    position: relative;
+    left: 90px;
+}
+
+.contato-link a { /*botao fale conosco*/
+    color: #fff; /*cor da fonte*/
+    text-decoration: none;/*tira a linha do link*/
+    background-color: #6a3093;/*cor do botão*/
+    padding: 5px 10px;/*margem do botão*/
+    border-radius: 3px;/*deixa a borda redonda*/
+    font: normal 20px Arial;/*tamanho da fonte*/
+    position: relative;/*faz o botão ficar no lugar que vc quer*/
+    left:700px;/*define o local que vc quer que o botão fique*/
+}
+.login-link a {/*botão login*/
+    color: #fff;/*cor da fonte*/
+    text-decoration: none;/*tira a linha do link*/
+    background-color: #450d6d;/*cor do botão*/
+    padding: 5px 10px;/*margem do botão*/
+    border-radius: 3px;/*deixa a borda redonda*/
+    font: normal 20px Arial;
+    position: relative;/*faz o botão ficar no lugar que vc quer*/
+    left:300px;/*define o local que vc quer que o botão fique*/
+}
+
+.cadastro-link a{
+    color: #fff; /*cor da fonte*/
+    text-decoration: none;/*tira a linha do link*/
+    background-color: #450d6d;/*cor do botão*/
+    padding: 5px 10px;/*margem do botão*/
+    border-radius: 3px;/*deixa a borda redonda*/
+    font: normal 20px Arial;/*tamanho da fonte*/
+    position: relative;/*faz o botão ficar no lugar que vc quer*/
+    right:100px;/*define o local que vc quer que o botão fique*/
+}
+
+/* Seção Principal  */
+
+.sessão_1 {
+    padding: 110px 0;/*Define o espaçamento e fundo da seção.*/
+    background-color: #fff;/* cor de fundo*/
+}
+
+.sessão_1 .sessão_1-lugar {/**/
+    display: flex;/**/
+    align-items: center;/**/
+    justify-content: space-between;/**/
+}
+
+.sessão_1-centro h2 {/**/
+    font-size: 3px;/**/
+    margin-bottom: 20px;/**/
+    color: #333;/**/
+}
+
+.sessão_1 span {/**/
+    color: #6a3093;/**/
+    font-weight: bold;/**/
+}
+
+.sessão_1-centro p {/**/
+    margin-bottom: 20px;/**/
+    max-width: 500px;/**/
+    color: #666;/**/
+    font-size: 20px;/**/
+}
+.sessão_1-lugar {
+    width: 80%; /*tamanho que a div header vai ocupar*/ 
+    margin: 0 auto;/* centraliza a div .conteiner */
+}
+
+/*bnt simular*/
+.si {
+    display: inline-block;/*largura do botao*/
+    background-color: #6a3093;/**/
+    color: white;/**/
+    padding: 8px 16px;/**/
+    border-radius: 5px;/**/
+    text-decoration: none;/**/
+    font-weight: bold;/**/
+    font-size: 20px;/**/
+    border: none;/**/
+    cursor: pointer;/**/
+    position: relative;/**/
+    left: 170px;/**/
+    top: 30px;/**/
+}
+
+/*imagem do shopping*/
+.sessão_1-image {
+    flex: 1;
+    text-align: right;
+}
+
+.sessão_1-image img {
+    max-width: 100%;
+    border-radius: 5px;
+    position: relative;
+}
+
+/* Sobre nos */
+
+
+.quem-somos-e-servicos {
+    background-color: #e6d7f2; 
+    padding: 150px 0; /* Espaçamento vertical */
+}
+
+.duas-colunas {
+    display: flex; 
+    justify-content: space-between; /* Espaço entre as colunas */
+    align-items:center;
+    gap: 30px; /* Espaço entre as colunas */
+
+}
+
+.coluna-quem-somos {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 50%; /* Ocupa metade do espaço */
+    max-width: 50%;
+    padding-right: 70px; /* Um pouco de espaço interno */
+    
+}
+
+.coluna-quem-somos h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative;
+    left: 360px;
+    bottom: 85px;
+}
+
+.coluna-quem-somos p {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+    position: relative;
+    left: 70px;
+}
+
+.coluna-servicos {
+    flex: 0 0 50%; /* Ocupa metade do espaço */
+    max-width: 50%;
+}
+
+.coluna-servicos h2 {
+    text-align: right; /* Alinhado à direita, como na imagem */
+    color: #6a3093;
+    margin-bottom: 15px;
+}
+
+.coluna-servicos .oferece {
+    max-width: 450px;
+    margin-left: auto; /* Alinha o parágrafo à direita */
+    margin-bottom: 30px;
+    text-align: right;
+    line-height: 1.5;
+}
+
+.cartoes {
+    width: 700%; /* Ocupa 90% da largura da tela */
+    max-width: 600px; /* Limita a largura máxima do box */
+    margin: 50px auto; /* Adiciona margem acima/abaixo e centraliza horizontalmente */
+    padding: 30px; /* Espaçamento interno */
+    background-color: #ffffff; /* Fundo branco do box */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+    text-align: center; /* Centraliza o texto (títulos, parágrafos) */
+    font-family: Arial; /* Fonte para todo o conteúdo */
+}
+    
+    .coluna-quem-somos,
+    .coluna-servicos {
+        max-width: 100%; /* Ocupa a largura total */
+    }
+
+    .coluna-quem-somos h2, .coluna-servicos h2 {
+        text-align: center; /* Centraliza títulos em mobile */
+    }
+
+    .coluna-servicos .oferece {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .cartoes {
+        justify-content: center; /* Centraliza cards em mobile */
+        flex-direction: column; /* Empilha os cards para melhor visualização */
+        align-items: center;
+    }
+    
+    .cartao {
+        flex: 0 1 90%; /* Ocupa quase toda a largura */
+    }
+
+
+
+/* Simulador */
+
+.simulator-box {
+    width: 700%; /* Ocupa 90% da largura da tela */
+    max-width: 950px; /* Limita a largura máxima do box */
+    margin: 50px auto; /* Adiciona margem acima/abaixo e centraliza horizontalmente */
+    padding: 30px; /* Espaçamento interno */
+    background-color: #ffffff; /* Fundo branco do box */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+    text-align: center; /* Centraliza o texto (títulos, parágrafos) */
+    font-family: Arial; /* Fonte para todo o conteúdo */
+}
+
+
+.simulator-box h1 {
+    color: #6a3093; /* Cor  */
+    font:normal 30px arial;
+    font-weight: bold; /* Deixa o título em negrito */
+}
+
+.simulator-box p {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 30px; /* Espaço após a descrição */
+}
+
+.input-group {
+    margin-bottom: 20px; /* Espaço entre os grupos de input */
+}
+
+.simulator-box label {
+    display: block; /* Garante que o label ocupe sua própria linha */
+    text-align: center; /* Centraliza o texto do label */
+    margin-bottom: 10px; /* Espaço entre o label e o input */
+    font-size: 14px;
+    color: #555;
+}
+
+.simulator-box input[type="text"], 
+.simulator-box input[type="number"] {
+    width: 70%; /* Largura dos campos, centralizados */
+    padding: 10px;
+    background-color: #f0e6ff; /* Fundo roxo claro (como na imagem) */
+    border: 1px solid #ccaaff; /* Borda roxa clara */
+    border-radius: 4px;
+    text-align: center; /* Centraliza o placeholder/texto digitado */
+    color: #333;
+    font-size: 16px;
+}
+
+.simular {
+    width: 70%; /* A mesma largura dos campos de input */
+    padding: 12px;
+    background-color: #6a3093;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+ .me{
+    display: inline-block;/*largura do botao*/
+    background-color: #6a3093;/**/
+    color: white;/**/
+    padding: 8px 16px;/**/
+    border-radius: 5px;/**/
+    text-decoration: none;/**/
+    font-weight: bold;/**/
+    font-size: 20px;/**/
+    border: none;/**/
+    cursor: pointer;/**/
+    position: relative;/**/
+    left: 850px;/**/
+    top: 30px;/**/
+}
+ 
+
+
+/* Contato */
+.contact {/**/
+    padding: 40px 0;/**/
+    background-color: rgba(63, 25, 96, 0.6);/**/
+    color: #fff;/**/
+}
+
+.contact .header {/**/
+    max-width: 600px;/**/
+
+}
+.gato{
+    position: relative;
+    left: 1500px;
+}
+
+.contact h2 {/**/
+    margin-bottom: 30px;/**/
+    text-align: left;/**/
+}
+
+.form-group {/**/
+    margin-bottom: 15px;/**/
+}
+.header h2{
+    position: relative;
+    left: 650px;
+}
+.form-group p{
+    position: relative;
+    left: 650px;
+}
+
+.form-group input,/**/
+.form-group textarea {/**/
+    width: 100%;/**/
+    padding: 12px;/**/
+    border: none;/**/
+    border-radius: 5px;/**/
+    background-color: rgba(101, 50, 138, 1);/**/
+    color: #fff;/**/
+    position: relative;
+    left: 650px;
+}
+
+.form-group input::placeholder
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group textarea {/**/
+    height: 120px;/**/
+    resize: vertical;/**/
+}
+ .btn {/**/
+    background-color: #6a3093;/**/
+    border: none;/**/
+    cursor: pointer;/**/
+    margin: 0 auto;/**/
+    padding: 10px 20px;/**/
+    position: relative;/**/
+    left: 840px;/**/
+    bottom: 40px;/**/
+}
+#resultado{
+    position: relative;
+    left: 800px;
+}
+
+
+footer {/**/
+    background-color: rgba(63, 25, 96, 1);/**/
+    color: #fff;/**/
+    padding: 30px 0 10px;/**/
+    border-top: 1px solid rgba(255, 255, 255, 0.1);/**/
+}
+
+footer .container {/**/
+    display: flex;/**/
+    justify-content: space-between;/**/
+    align-items: flex-start;/**/
+    margin-bottom: 20px;/**/
+}
+
+img {/**/
+    max-width: 160px;/**/
+    position: relative;/**/
+    top: 8px;/**/
+    left: 55px;
+}
+
+.footer-info {/**/
+    display: flex;/**/
+    gap: 40px;/**/
+}
+
+.footer-contact h3 {/**/
+    margin-bottom: 8px;/**/
+    color: #fff;/**/
+    font-size: 20px;/**/
+     position: relative;
+    left: 900px
+}
+.footer-contact p{
+    position:relative;
+    left:900px;
+}
+.footer-contact a {/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+    text-decoration: none;/**/
+    font-size: 14px;/**/
+    position: relative;
+    left: 900px;
+}
+
+.copyright {/*termo de uso*/
+    border-top: 1px solid rgba(255, 255, 255, 0.1);/**/
+    padding-top: 15px;/**/
+    text-align: center;/**/
+    font-size: 12px;/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+    display: flex;/**/
+    justify-content: space-between;/**/
+    flex-wrap: wrap;/**/
+}
+
+.footer-links a {/**/
+    color: rgba(255, 255, 255, 0.7);/**/
+    text-decoration: none;/**/
+    margin-left: 15px;/**/
+    transition: color 0.3s;/**/
+    font-size: 12px;/**/
+}
+   
+    .hero-content {/**/
+        padding-right: 0;/**/
+        margin-bottom: 30px;/**/
+        text-align: center;/**/
+    }
+    
+    .service-cards {/**/
+        flex-direction: column;/**/
+        align-items: center;/**/
+    	}    
+    /*poe a poora da borda*/
+    .services h2,/**/
+    .services > p {/**/
+        text-align: center;/**/
+        margin-left: auto;/**/
+        margin-right: auto;/**/
+    }
+    
+    footer .container,/**/
+    .footer-info {/**/
+        flex-direction: column;/**/
+        text-align: center;/**/
+        align-items: center;/**/
+    }
+    /**/
+    .footer-menu,/**/
+    .footer-contact {/**/
+        position: relative;
+        left: 700px;/**/
+        text-align: left;
+    }
+    
+    .copyright {/**/
+        flex-direction: column;/**/
+    }
+    
+    .footer-links {/**/
+        margin-top: 10px;/**/
+    }
+    
+    .footer-links a {/**/
+        margin: 0 5px;/**/
+    }
+
+.gato{
+    position: relative;/**/
+    left: 620px ;/**/
+    top: -15px;/**/
+}
+.container > h2{/**/
+    position:relative;/**/
+    right: 5px;/**/
+}
