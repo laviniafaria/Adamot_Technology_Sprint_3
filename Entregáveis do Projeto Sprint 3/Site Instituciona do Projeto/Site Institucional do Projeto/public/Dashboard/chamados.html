@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/institucional/image__2_-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Adamot</title>
+</head>
+
+<body>
+    <header>
+        <img style="width: 300px;" src="/institucional/logo1.png" alt="">
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+
+            <h3><a href="dashboard.html">
+                    <img style="width: 20px;" src="assets/painel.png" alt="dashemoji">
+                    Dashboard
+                </a>
+            </h3>
+
+            <h3><a href="sensores.html">
+                    <img style="width: 20px;" src="assets/sensor.png" alt="sensor">
+                    Sensores
+                </a>
+            </h3>
+
+            <h3 class="ativo"><a href="chamados.html">
+                    <img style="width: 20px;" src="assets/atendimento-ao-cliente.png" alt="chamadoEmoji">
+                    Chamados
+                </a>
+            </h3>
+
+            <h3><a href="relatorios.html">
+                    <img style="width: 20px;" src="assets/relatorio.png" alt="sensorEmoji">
+                    Relatórios
+                </a>
+            </h3>
+
+
+            <h4><a href="/Projeto/Site Estatico/site_adamot/Site_final/site.html">
+                    <img style="width: 15px;" src="assets/sair.png" alt="exit">
+                    Sair
+                </a>
+            </h4>
+        </aside>
+
+        <div class="content1">
+            <div class="welcome-bar">
+                <span id="welcomeMsg"></span>
+            </div>
+
+            <div class="chamado">
+                <h2 style="display: flex; justify-content: center;">Abertura de Chamados</h2> <br><br>
+
+                <div style="display: flex; justify-content: center; gap: 10px; " id="select">
+                    <b>Tipo de Report:</b> 
+                    <select style="border-radius: 10px;" name="tipoReport" id="selReport">
+                        <option value="#">Selecione</option>
+                        <option value="sensor">Sensores</option>
+                        <option value="dados">Dados</option>
+                        <option value="portal">Site/Dashboard</option>
+                    </select>
+                </div>
+
+                <div class="caixaReport">
+                    <h2>Descreva aqui o problema:</h2> 
+        
+                    <div id="mensagemReport">
+                        <textarea id="textoReport" cols="30" rows="10"
+                        placeholder="Escreva aqui..." style="font-size: large; border-radius: 10px; padding: 10px; width: 100%; height: 100%;"></textarea>
+                    </div>
+
+                    <div id="button" style="display: flex; justify-content: center; margin-top: 40px;">
+                        <button id="chamadoButton" onclick="enviarMensagem()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    const usuario = localStorage.getItem("usuarioLogado");
+
+    if (usuario) {
+        document.getElementById("welcomeMsg").textContent = `Bem-vindo, ${usuario}!`;
+    } else {
+        window.location.href = "/Site_estatico/login_cadastro/login.html";
+    }
+</script>
+</html>
