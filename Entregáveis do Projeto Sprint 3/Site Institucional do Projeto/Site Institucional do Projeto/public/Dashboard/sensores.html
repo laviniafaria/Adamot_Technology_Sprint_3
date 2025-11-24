@@ -9,48 +9,48 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <title>Adamot</title>
 </head>
 
 <body>
     <header>
-        <img style="width: 300px" src="/institucional/logo1.png" alt="" />
+        <img style="width: 300px" src="../assets/logo1.png" alt="" />
     </header>
 
     <div class="main-container">
         <aside class="sidebar">
             <h3>
                 <a href="dashboard.html">
-                    <img style="width: 20px" src="assets/painel.png" alt="dashemoji" />
+                    <img style="width: 20px" src="../assets/painel.png" alt="dashemoji" />
                     Dashboard
                 </a>
             </h3>
 
             <h3 class="ativo">
                 <a href="sensores.html">
-                    <img style="width: 20px" src="assets/sensor.png" alt="sensor" />
+                    <img style="width: 20px" src="../assets/sensor.png" alt="sensor" />
                     Sensores
                 </a>
             </h3>
 
             <h3>
                 <a href="chamados.html">
-                    <img style="width: 20px" src="assets/atendimento-ao-cliente.png" alt="chamadoEmoji" />
+                    <img style="width: 20px" src="../assets/atendimento-ao-cliente.png" alt="chamadoEmoji" />
                     Chamados
                 </a>
             </h3>
 
             <h3>
                 <a href="relatorios.html">
-                    <img style="width: 20px" src="assets/relatorio.png" alt="sensorEmoji" />
+                    <img style="width: 20px" src="../assets/relatorio.png" alt="sensorEmoji" />
                     Relatórios
                 </a>
             </h3>
 
             <h4>
                 <a href="/Projeto/Site Estatico/site_adamot/Site_final/site.html">
-                    <img style="width: 15px" src="assets/sair.png" alt="exit" />
+                    <img style="width: 15px" src="../assets/sair.png" alt="exit" />
                     Sair
                 </a>
             </h4>
@@ -116,15 +116,6 @@
 
 </body>
 <script>
-    const usuario = localStorage.getItem("usuarioLogado");
-
-    if (usuario) {
-        document.getElementById(
-            "welcomeMsg"
-        ).textContent = `Bem-vindo, ${usuario}!`;
-    } else {
-        window.location.href = "/Site_estatico/login_cadastro/login.html";
-    }
 
     function EntA() {
         botA.style = "background-color: #cacaca;"

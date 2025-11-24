@@ -5,54 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adamot Login </title>
-        <link rel="stylesheet" href="css/login.css">
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="css/login.css">
 
 </head>
 
 <body>
     <div class="cartao_principal">
-        </div>
+    </div>
 
-            <div class="login">
+    <div class="login">
 
-                <h1>Login</h1>
+        <h1>Login</h1>
 
-                <h2>Olá, seja bem vindo novamente!</h2>
+        <h2>Olá, seja bem vindo novamente!</h2>
 
-                <p>Registre-se para usar todos os recursos do site </p>
+        <p>Registre-se para usar todos os recursos do site </p>
 
-               <p> Entre com seu email:</p>
-                <input type="text" id="ipt_email_login" placeholder="Ex: adamot@gmail.com"><br>
-               <p> Entre com sua senha: </p>
-                <input type="password" id="ipt_senha_login" placeholder="Ex: 1234..."><br>
+        <p> Entre com seu email:</p>
+        <input type="text" id="email_input" placeholder="Ex: adamot@gmail.com"><br>
+        <p> Entre com sua senha: </p>
+        <input type="password" id="senha_input" placeholder="Ex: 1234..."><br>
 
-                <button onclick="entrar1()">Entrar</button>
+        <button onclick="entrar()">Entrar</button>
 
-                <div id="entrar"></div>
-                <div id="limpar"></div>
-            </div>
-        
+        <div id="entrar"></div>
+        <div id="limpar"></div>
+    </div>
+
 </body>
 <script>
-    function entrar1() {
-        var email_login = ipt_email_login.value;
-        var senha_login = ipt_senha_login.value;
+    function entrar() {
 
-        if (email_login == "" || senha_login == "") {
-            alert("ERRO: Por favor, verifique o preenchimento de todos os campos de login.");
-            limpar.innerHTML = "";
 
-        } else if (email_login == "adamot@gmail.com" && senha_login == "adamot") {
-            entrar.innerHTML = "Seja bem vindo"; /*Ir para a dashboard*/
-            localStorage.setItem("usuarioLogado", email_login);
-            window.location.href = "/Projeto/Site Estatico/dashboard/dashboard.html";
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
 
-        } else {
-            alert("Email ou senha inválidos. Tente novamente.");
-            limpar.innerHTML = "Falha no login.";
+        if (emailVar == "" || senhaVar == "") {
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            return false;
         }
-    }
 
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "../Dashboard/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 
 </script>
 
