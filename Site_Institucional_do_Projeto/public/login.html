@@ -4,56 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adamot Login </title>
-        <link rel="stylesheet" href="../css/login.css">
-
+    <title>Adamot Login</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
+
     <div class="cartao_principal">
+
+        <div class="login">
+
+            <h1>Login</h1>
+
+            <h2>Olá, seja bem vindo novamente!</h2>
+
+            <p>Entre com seu email:</p>
+            <input type="text" id="ipt_email_login" placeholder="Ex: adamot@gmail.com">
+
+            <p>Entre com sua senha:</p>
+            <input type="password" id="ipt_senha_login" placeholder="Ex: 1234...">
+
+            <button onclick="entrar1()">Entrar</button>
+
+            <div id="entrar"></div>
+            <div id="limpar"></div>
         </div>
 
-            <div class="login">
+    </div>
 
-                <h1>Login</h1>
-
-                <h2>Olá, seja bem vindo novamente!</h2>
-
-                <p>Registre-se para usar todos os recursos do site </p>
-
-               <p> Entre com seu email:</p>
-                <input type="text" id="ipt_email_login" placeholder="Ex: adamot@gmail.com"><br>
-               <p> Entre com sua senha: </p>
-                <input type="password" id="ipt_senha_login" placeholder="Ex: 1234..."><br>
-
-                <button onclick="entrar1()">Entrar</button>
-
-                <div id="entrar"></div>
-                <div id="limpar"></div>
-            </div>
-        
 </body>
+
 <script>
     function entrar1() {
         var email_login = ipt_email_login.value;
         var senha_login = ipt_senha_login.value;
 
         if (email_login == "" || senha_login == "") {
-            alert("ERRO: Por favor, verifique o preenchimento de todos os campos de login.");
+            alert("ERRO: Preencha todos os campos.");
             limpar.innerHTML = "";
+            return;
+        }
 
-        } else if (email_login == "adamot@gmail.com" && senha_login == "adamot") {
-            entrar.innerHTML = "Seja bem vindo"; /*Ir para a dashboard*/
+        if (email_login == "adamot@gmail.com" && senha_login == "adamot") {
+            entrar.innerHTML = "Seja bem vindo!";
             localStorage.setItem("usuarioLogado", email_login);
             window.location.href = "/Projeto/Site Estatico/dashboard/dashboard.html";
-
         } else {
-            alert("Email ou senha inválidos. Tente novamente.");
+            alert("Email ou senha inválidos.");
             limpar.innerHTML = "Falha no login.";
         }
     }
-
-
 </script>
 
 </html>
