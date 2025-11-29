@@ -23,16 +23,18 @@ nav {
     align-items: center;
 } 
 
+/* LOGO */
 .logo{
     left: 50px;
     width: 190px;
 }
 
+/* BOTÕES DO MENU */
 .btn_layout {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  gap:80px;
+  gap: 80px;
   margin-right: 50px;
 }
 
@@ -48,10 +50,10 @@ nav {
 }
 
 .btn_layout a:hover {
-color: #4e1566;
+  color: #4e1566;
 }
 
-
+/* SEÇÃO 1 */
 .sessão_1 {
     padding: 110px 0;
     background-color: #fff;
@@ -61,10 +63,13 @@ color: #4e1566;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 80%; 
+    margin: 0 auto;
 }
 
+/* CONTEÚDO ESQUERDO */
 .sessão_1-centro h2 {
-    font-size: 3px;
+    font-size: 60px;      
     margin-bottom: 20px;
     color: #333;
 }
@@ -80,12 +85,8 @@ color: #4e1566;
     color: #666;
     font-size: 20px;
 }
-.sessão_1-lugar {
-    width: 80%; 
-    margin: 0 auto;
-}
 
-/*bnt simular*/
+/* BOTÃO "SIMULAR" */
 .si {
     display: inline-block;
     background-color: #6a3093;
@@ -102,16 +103,19 @@ color: #4e1566;
     top: 30px;
 }
 
-/*imagem do shopping*/
+/* IMAGEM — ESTA PARTE ESTÁ CERTA */
 .sessão_1-image {
     flex: 1;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end; 
 }
 
 .sessão_1-image img {
-    max-width: 100%;
-    border-radius: 5px;
-    position: relative;
+    display: block;
+    max-width: 90%; 
+    border-radius: 10px;
+    margin-left: auto;   
+    margin-right: 0;     
 }
 
 /* Sobre nos */
@@ -125,41 +129,31 @@ color: #4e1566;
 .duas-colunas {
     display: flex; 
     justify-content: space-between;
-    align-items:center;
+    align-items: flex-start; 
     gap: 30px;
-
 }
 
-.coluna-quem-somos {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 0 1 50%; 
+.coluna-quem-somos,
+.coluna-servicos {
+    padding-left: 40px; 
+    flex: 1; 
     max-width: 50%;
-    padding-right: 70px;
-    
 }
 
+/* ------ QUEM SOMOS ------ */
 .coluna-quem-somos h2 {
     text-align: left;
     margin-bottom: 20px;
-    position: relative;
-    left: 360px;
-    bottom: 85px;
 }
 
 .coluna-quem-somos p {
     font-size: 20px;
     line-height: 1.6;
-    text-align: center;
-    position: relative;
-    left: 70px;
+    text-align: left;
+    margin-top: 55px;
 }
 
-.coluna-servicos {
-    flex: 0 0 50%;
-    max-width: 50%;
-}
-
+/* ------ SERVIÇOS ------ */
 .coluna-servicos h2 {
     text-align: right;
     color: #6a3093;
@@ -173,6 +167,7 @@ color: #4e1566;
     text-align: right;
     line-height: 1.5;
 }
+
 
 .cartoes {
     width: 700%; 
