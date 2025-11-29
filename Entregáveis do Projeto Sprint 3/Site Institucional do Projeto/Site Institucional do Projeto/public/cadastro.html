@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body onload="listar()">
 
     <div class="cartao_principal">
     </div>
@@ -39,7 +39,7 @@
         <button onclick="cadastrar()">Cadastrar</button>
         <div id="entrada"></div>
 
-        <div id="mensagem"></div>
+        <div id="mensagem_erro"></div>
 
     </div>
     </div>
@@ -48,7 +48,10 @@
 </body>
 <script>
 
-    function cadastrar() {
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
@@ -58,6 +61,7 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
     var codigoVar = codigo_input.value;
+    var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
@@ -65,22 +69,24 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == "" 
+      codigoVar == ""
     ) {
-      mensagem.innerHTML =
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-     
       return false;
-    }
+    } 
 
-    if (nomeVar.length < 2) {
-      
-      mensagem.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-     
-      return false;
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].token == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].idShopping
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+      }
     }
 
     // Enviando o valor da nova input
@@ -95,33 +101,53 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        codigoServer: codigoVar
+        idEmpresaVincularServer: idEmpresaVincular
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
+        
 
-          mensagem.innerHTML =
+          mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
-          
+        
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-       
       });
 
     return false;
   }
-</script>
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].token)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+  </script>
 
 </html>
