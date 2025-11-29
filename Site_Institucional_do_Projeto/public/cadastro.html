@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adamot Cadastro</title>
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <script src="../js/sessao.js"></script>
+</head>
+
+<body>
+
+    <div class="alerta-erro">
+        <div class="card-erro" id="cardErro">
+            <span id="mensagem_erro"></span>
+        </div>
+    </div>
+
+    <div class="cartao_principal">
+
+        <div class="cadastro">
+            <h1>Cadastre-se</h1>
+            <h2>Olá! A Adamot tem prazer em te receber. Seja bem-vindo!</h2>
+
+            <p>Cadastre-se para usar todos os recursos do site:</p>
+
+            <p>Código da Empresa:</p>
+            <input type="text" id="codigo_input" placeholder="Ex: XXXXX">
+
+            <p>Nome:</p>
+            <input type="text" id="nome_input" placeholder="Ex: adamot">
+
+            <p>Email:</p>
+            <input type="text" id="email_input" placeholder="Ex: adamot@gmail.com">
+
+            <p>Senha:</p>
+            <input type="password" id="senha_input" placeholder="Ex: 1234...">
+
+            <p>Confirmação de senha:</p>
+            <input type="password" id="confirmacao_senha_input" placeholder="Ex: 1234...">
+
+            <button onclick="cadastrar()">Cadastrar</button>
+
+            <div id="entrada"></div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    function cadastrar() {
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var codigoVar = codigo_input.value;
+
+        if (!nomeVar || !emailVar || !senhaVar || !confirmacaoSenhaVar || !codigoVar) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = 'Todos os campos devem ser preenchidos';
+            return false;
+        }
+
+        if (nomeVar.length < 2) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = 'Seu nome deve conter ao menos 2 letras';
+            return false;
+        }
+
+        if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = 'O email deve conter "@" e "."';
+            return false;
+        }
+
+        if (senhaVar.length < 8) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = 'Senha deve conter ao menos 8 caracteres.';
+            return false;
+        }
+
+        if (confirmacaoSenhaVar != senhaVar) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = 'As senhas digitadas não estão iguais.';
+            return false;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, 2000);
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
+</script>
+
+</html>
