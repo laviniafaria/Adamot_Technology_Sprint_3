@@ -23,6 +23,7 @@ function buscarRegistrosEmTempoReal(fkShopping) {
                         FROM registro r
                         JOIN sensor s ON r.fkSensor = s.idSensor 
                         WHERE s.shopping_id = ${fkShopping}
+                        GROUP BY r.dtHora
                     ORDER BY r.dtHora DESC LIMIT 1`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

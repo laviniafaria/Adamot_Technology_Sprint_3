@@ -121,8 +121,9 @@
   var fkShopping = sessionStorage.ID_SHOPPING;
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+  let proximaAtualizacao;
 
-  window.onload(obterDadosGrafico(fkShopping))
+  obterDadosGrafico(fkShopping)
   // O gráfico é construído com três funções:
   // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
   // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
@@ -135,6 +136,10 @@
   //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
   //     Para ajustar o "select", ajuste o comando sql em src/models
   function obterDadosGrafico(fkShopping) {
+
+    if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
 
     fetch(`/registros/ultimos/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
