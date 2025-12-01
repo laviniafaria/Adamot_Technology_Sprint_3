@@ -11,18 +11,19 @@ const SERVIDOR_PORTA = 3300;
 const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
-const serial = async ( 
+const serial = async (
     valoresSensorDigital,
+    valoresHora
 ) => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '127.0.0.1',
-            user: 'api',
-            password: 'senhaapi',
-            database: 'adsb2',
-            port: 3306
+            host: 'localhost',
+            user: 'api_user',
+            password: 'Sam1502@',
+            database: 'adamot',
+            port: 3307
         }
     ).promise();
 
@@ -51,20 +52,21 @@ const serial = async (
         console.log(data);
         const valores = data.split(';');
         const sensorDigital = parseInt(valores[0]);
-        const sensorAnalogico = parseFloat(valores[1]);
+        const dataHora = pegarData().toString();
 
-        // armazena os valores dos sensores nos arrays correspondente
+        // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorDigital.push(sensorDigital);
+        valoresHora.push(dataHora);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO registro (monitoramento) VALUES (?)',
-                [sensorDigital]
+                'INSERT INTO registro (valorRegistro, dtHora) VALUES (?, ?)',
+                [sensorDigital, dataHora]
             );
-            console.log("valores inseridos no banco: " + sensorDigital);
+            console.log("valores inseridos no banco:" + sensorDigital + ", " + dataHora);
 
         }
 
@@ -78,7 +80,8 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorDigital
+    valoresSensorDigital,
+    valoresHora
 ) => {
     const app = express();
 
@@ -98,20 +101,50 @@ const servidor = (
     app.get('/sensores/digital', (_, response) => {
         return response.json(valoresSensorDigital);
     });
+
+    app.get('/sensores/dataHora', (_, response) => {
+        return response.json(valoresHora);
+    });
+}
+
+function pegarData() {
+    
+    var dataAtual = new Date;
+    dataAtual = dataAtual.toString().split(' ');
+    var ano = dataAtual[3];
+    var dia = dataAtual[2];
+    var mes = dataAtual[1] === 'Jan' ? '01' :
+    dataAtual[1] === 'Feb' ? '02' :
+    dataAtual[1] === 'Mar' ? '03' :
+    dataAtual[1] === 'Apr' ? '04' :
+    dataAtual[1] === 'May' ? '05' :
+    dataAtual[1] === 'Jun' ? '06' :
+    dataAtual[1] === 'Jul' ? '07' :
+    dataAtual[1] === 'Aug' ? '08' :
+    dataAtual[1] === 'Sep' ? '09' :
+    dataAtual[1] === 'Oct' ? '10' :
+    dataAtual[1] === 'Nov' ? '11' : '12' ;
+    let hora = dataAtual[4];
+    var dataCompleta = `${ano}-${mes}-${dia}-${hora}`
+
+    return dataCompleta;
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
     const valoresSensorDigital = [];
+    const valoresHora = []
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorDigital
+        valoresSensorDigital,
+        valoresHora
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorDigital
+        valoresSensorDigital,
+        valoresHora
     );
 })();
