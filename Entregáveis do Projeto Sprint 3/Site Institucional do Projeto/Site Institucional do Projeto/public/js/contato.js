@@ -2,7 +2,9 @@ var limiteMensagens = 5;
 var mensagensEnviadas = 0;
 
 function contato() {
-
+    erro_email.innerHTML = '';
+    erro_mensagem.innerHTML = '';
+    erro_nome.innerHTML = '';
     if (mensagensEnviadas >= limiteMensagens) {
         
      resultado.innerHTML = ' Suas mensagens de hoje acabaram (Limite: ' + limiteMensagens + ').';
@@ -13,17 +15,21 @@ function contato() {
     var nome = ipt_nome.value;
     var email = ipt_email.value;
     var mensagem = ipt_mensagem.value;
+    var erro = 0;
 
     if (nome == '') {
-        alert('O campo Nome é obrigatório. Por favor, preencha.');
+        erro_nome.innerHTML = '<span style="color: #E80700">Preencha o campo Nome Completo.</span>';
+        erro++
     }
-    else if (email == '' || email.indexOf('@') == -1) { 
-        alert('O email digitado é inválido. Por favor, verifique.');
+    if (email == '' || email.indexOf('@') == -1) { 
+        erro_email.innerHTML = '<span style = "color: #E80700">O email digitado é inválido.</span>';
+        erro ++
     }
-    else if (mensagem == '') {
-        alert('O campo Mensagem é obrigatório. Por favor, preencha para enviar.');
+    if (mensagem == '') {
+        erro_mensagem.innerHTML = '<span style = "color: #E80700">O campo Mensagem é obrigatório. Por favor, preencha para enviar.</span>';
+        erro++
     }
-    else {
+    if (erro == 0) {
 
         ipt_nome.value = "";     
         ipt_email.value = "";   

@@ -31,7 +31,7 @@ function calcularOperação() {
 
         mensagem.innerHTML = `
         <h3>📊 Resultado da Simulação</h3>
-        <p>Com base no <strong>faturamento anual de ${faturamentoAnual.toLocaleString("pt-br",{style: "currency", currency:"BRL"})}</strong> e <strong>${qtdEntradas}</strong> entradas no local, ao aplicar um aumento de <strong>${porcentagem*100}%</strong>, o ganho adicional estimado é <strong> ${valorExtra.toLocaleString("pt-br",{style: "currency", currency: "BRL"})}</strong> ao ano.</p>
+        <p  style = "background-color: #6BD14F; border-radius: 4px">Com base no <strong>faturamento anual de ${faturamentoAnual.toLocaleString("pt-br",{style: "currency", currency:"BRL"})}</strong> e <strong>${qtdEntradas}</strong> entradas no local, ao aplicar um aumento de <strong>${porcentagem*100}%</strong>, o ganho adicional estimado é <strong> ${valorExtra.toLocaleString("pt-br",{style: "currency", currency: "BRL"})}</strong> ao ano.</p>
         <hr>
         <h4>⚙️ Estrutura recomendada</h4>
         <p>Para monitorar o fluxo de clientes de forma eficiente, recomendamos instalar aproximadamente <strong>${qtdSensores}</strong> sensores (considerando 2 por entrada), com um investimento estimado de <strong> ${investimentoInicial.toLocaleString("pt-br",{style: "currency", currency: "BRL"})}</strong>.</p>

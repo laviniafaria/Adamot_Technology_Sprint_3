@@ -72,6 +72,7 @@ nav {
     font-size: 60px;      
     margin-bottom: 20px;
     color: #333;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .sessão_1 span {
@@ -84,6 +85,7 @@ nav {
     max-width: 500px;
     color: #666;
     font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* BOTÃO "SIMULAR" */
@@ -144,6 +146,7 @@ nav {
 .coluna-quem-somos h2 {
     text-align: left;
     margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .coluna-quem-somos p {
@@ -151,6 +154,7 @@ nav {
     line-height: 1.6;
     text-align: left;
     margin-top: 55px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* ------ SERVIÇOS ------ */
@@ -158,6 +162,7 @@ nav {
     text-align: right;
     color: #6a3093;
     margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .coluna-servicos .oferece {
@@ -188,12 +193,14 @@ nav {
 
     .coluna-quem-somos h2, .coluna-servicos h2 {
         text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .coluna-servicos .oferece {
         margin-left: auto;
         margin-right: auto;
         text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .cartoes {
@@ -308,14 +315,15 @@ nav {
     top: -15px;
 
     /* TAMANHO — só isso foi adicionado */
-    width: 100px;      /* ajuste aqui o tamanho que quiser */
-    height: auto;      /* mantém proporção */
+    width: 100px;
+    height: auto;
 }
 
 
 .contact h2 {
-    margin-bottom: 0; /* 🔥 COLADO */
+    margin-bottom: 0;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .form-group {
@@ -325,6 +333,7 @@ nav {
 .form-group p{
     position: static;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .form-group input,
@@ -337,6 +346,7 @@ nav {
     color: #fff;
     margin: 0 auto;
     display: block;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .form-group textarea {
