@@ -12,13 +12,6 @@ body {
     /*fonte do site*/
 }
 
-header {
-    background-color: #8e44ad;
-    padding: 1rem;
-    text-align: center;
-    color: white;
-    margin-bottom: 5px;
-}
 
 .ativo {
     box-shadow: 0 2px 5px #490068;
@@ -35,14 +28,21 @@ header {
     width: 100%;
 }
 
+.sidebar img{
+    width: 150px;
+}
+
 
 .sidebar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
     background-color: #8e44ad;
     width: 200px;
-    min-height: 100%;
+    height: 100vh;
     margin-bottom: 0;
     padding: 1rem;
-    border-radius: 10px;
 }
 
 

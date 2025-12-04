@@ -30,7 +30,23 @@ function buscarRegistrosEmTempoReal(fkShopping) {
     return database.executar(instrucaoSql);
 }
 
+function buscarRegistroSensorA(fkShopping, limite_linhas) {
+
+    var instrucaoSql = `SELECT 
+                    DATE_FORMAT(r.dtHora, '%H') AS hora,
+                    SUM(r.valor) AS pessoas
+                    FROM registro r
+                    JOIN sensor s ON r.fkSensor = s.idSensor
+                    WHERE s.shopping_id = ${fkShopping}
+                    GROUP BY  DATE_FORMAT(r.dtHora, '%H')
+                    ORDER BY hora DESC LIMIT ${limite_linhas}`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimosRegistros,
-    buscarRegistrosEmTempoReal
+    buscarRegistrosEmTempoReal,
+    buscarRegistroSensorA
 }

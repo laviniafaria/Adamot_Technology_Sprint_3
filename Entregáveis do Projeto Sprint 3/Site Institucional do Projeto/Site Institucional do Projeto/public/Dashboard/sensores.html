@@ -13,12 +13,10 @@
 </head>
 
 <body>
-    <header>
-        <img style="width: 300px" src="../assets/logo1.png" alt="" />
-    </header>
 
     <div class="main-container">
         <aside class="sidebar">
+            <img src="../assets/image__2_-removebg-preview.png" alt="logoadamot">
             <h3>
                 <a href="dashboard.html">
                     <img style="width: 20px" src="../assets/painel.png" alt="dashemoji" />
@@ -83,12 +81,12 @@
                             <span style="opacity: 0.5;">Horários</span>
                         </div>
                     </div>
-                    
-                        <div class="heatmap-container">
-                            <h2>Mapa de calor</h2>
-                            <div class="calorento" id="MapaA"></div>
-                        </div>
-                
+
+                    <div class="heatmap-container">
+                        <h2>Mapa de calor</h2>
+                        <div class="calorento" id="MapaA"></div>
+                    </div>
+
                 </div>
             </div>
             <div style="display: none;" id="GraEntB">
@@ -100,12 +98,12 @@
                             <span style="opacity: 0.5;">Horários</span>
                         </div>
                     </div>
-                    
-                        <div class="heatmap-container">
-                            <h2>Mapa de calor</h2>
-                            <div class="calorento" id="MapaB"></div>
-                        </div>
-                   
+
+                    <div class="heatmap-container">
+                        <h2>Mapa de calor</h2>
+                        <div class="calorento" id="MapaB"></div>
+                    </div>
+
                 </div>
             </div>
 
@@ -170,7 +168,7 @@
     });
 
 
- new Chart(ctxB, {
+    new Chart(ctxB, {
         type: 'line',
         data: {
             labels: ['12:00', '13:00', '14:00', '16:00', '17:00', '18:00', '19:00'],
@@ -321,7 +319,7 @@
         ];
     }
 
-        anychart.onDocumentReady(function () {
+    anychart.onDocumentReady(function () {
         // create a heatmap
         var chart = anychart.heatMap(getDataB());
         // set a custom color scale
@@ -378,70 +376,70 @@
     // add the data
     function getDataB() {
         return [
-    { x: "Seg", y: "00:00", heat: 10 },
-    { x: "Ter", y: "00:00", heat: 10 },
-    { x: "Qua", y: "00:00", heat: 10 },
-    { x: "Qui", y: "00:00", heat: 10 },
-    { x: "Sex", y: "00:00", heat: 12 },
-    { x: "Sab", y: "00:00", heat: 15 },
-    { x: "Dom", y: "00:00", heat: 12 },
+            { x: "Seg", y: "00:00", heat: 10 },
+            { x: "Ter", y: "00:00", heat: 10 },
+            { x: "Qua", y: "00:00", heat: 10 },
+            { x: "Qui", y: "00:00", heat: 10 },
+            { x: "Sex", y: "00:00", heat: 12 },
+            { x: "Sab", y: "00:00", heat: 15 },
+            { x: "Dom", y: "00:00", heat: 12 },
 
-    { x: "Seg", y: "03:00", heat: 10 },
-    { x: "Ter", y: "03:00", heat: 10 },
-    { x: "Qua", y: "03:00", heat: 10 },
-    { x: "Qui", y: "03:00", heat: 10 },
-    { x: "Sex", y: "03:00", heat: 15 },
-    { x: "Sab", y: "03:00", heat: 25 },
-    { x: "Dom", y: "03:00", heat: 15 },
+            { x: "Seg", y: "03:00", heat: 10 },
+            { x: "Ter", y: "03:00", heat: 10 },
+            { x: "Qua", y: "03:00", heat: 10 },
+            { x: "Qui", y: "03:00", heat: 10 },
+            { x: "Sex", y: "03:00", heat: 15 },
+            { x: "Sab", y: "03:00", heat: 25 },
+            { x: "Dom", y: "03:00", heat: 15 },
 
-    { x: "Seg", y: "06:00", heat: 30 },
-    { x: "Ter", y: "06:00", heat: 35 },
-    { x: "Qua", y: "06:00", heat: 35 },
-    { x: "Qui", y: "06:00", heat: 30 },
-    { x: "Sex", y: "06:00", heat: 40 },
-    { x: "Sab", y: "06:00", heat: 60 },
-    { x: "Dom", y: "06:00", heat: 30 },
+            { x: "Seg", y: "06:00", heat: 30 },
+            { x: "Ter", y: "06:00", heat: 35 },
+            { x: "Qua", y: "06:00", heat: 35 },
+            { x: "Qui", y: "06:00", heat: 30 },
+            { x: "Sex", y: "06:00", heat: 40 },
+            { x: "Sab", y: "06:00", heat: 60 },
+            { x: "Dom", y: "06:00", heat: 30 },
 
-    { x: "Seg", y: "09:00", heat: 70 },
-    { x: "Ter", y: "09:00", heat: 75 },
-    { x: "Qua", y: "09:00", heat: 75 },
-    { x: "Qui", y: "09:00", heat: 65 },
-    { x: "Sex", y: "09:00", heat: 80 },
-    { x: "Sab", y: "09:00", heat: 100 },
-    { x: "Dom", y: "09:00", heat: 70 },
+            { x: "Seg", y: "09:00", heat: 70 },
+            { x: "Ter", y: "09:00", heat: 75 },
+            { x: "Qua", y: "09:00", heat: 75 },
+            { x: "Qui", y: "09:00", heat: 65 },
+            { x: "Sex", y: "09:00", heat: 80 },
+            { x: "Sab", y: "09:00", heat: 100 },
+            { x: "Dom", y: "09:00", heat: 70 },
 
-    { x: "Seg", y: "12:00", heat: 120 },
-    { x: "Ter", y: "12:00", heat: 130 },
-    { x: "Qua", y: "12:00", heat: 130 },
-    { x: "Qui", y: "12:00", heat: 110 },
-    { x: "Sex", y: "12:00", heat: 140 },
-    { x: "Sab", y: "12:00", heat: 200 },
-    { x: "Dom", y: "12:00", heat: 120 },
+            { x: "Seg", y: "12:00", heat: 120 },
+            { x: "Ter", y: "12:00", heat: 130 },
+            { x: "Qua", y: "12:00", heat: 130 },
+            { x: "Qui", y: "12:00", heat: 110 },
+            { x: "Sex", y: "12:00", heat: 140 },
+            { x: "Sab", y: "12:00", heat: 200 },
+            { x: "Dom", y: "12:00", heat: 120 },
 
-    { x: "Seg", y: "15:00", heat: 130 },
-    { x: "Ter", y: "15:00", heat: 140 },
-    { x: "Qua", y: "15:00", heat: 140 },
-    { x: "Qui", y: "15:00", heat: 120 },
-    { x: "Sex", y: "15:00", heat: 150 },
-    { x: "Sab", y: "15:00", heat: 200 },
-    { x: "Dom", y: "15:00", heat: 130 },
+            { x: "Seg", y: "15:00", heat: 130 },
+            { x: "Ter", y: "15:00", heat: 140 },
+            { x: "Qua", y: "15:00", heat: 140 },
+            { x: "Qui", y: "15:00", heat: 120 },
+            { x: "Sex", y: "15:00", heat: 150 },
+            { x: "Sab", y: "15:00", heat: 200 },
+            { x: "Dom", y: "15:00", heat: 130 },
 
-    { x: "Seg", y: "18:00", heat: 100 },
-    { x: "Ter", y: "18:00", heat: 110 },
-    { x: "Qua", y: "18:00", heat: 110 },
-    { x: "Qui", y: "18:00", heat: 90 },
-    { x: "Sex", y: "18:00", heat: 130 },
-    { x: "Sab", y: "18:00", heat: 180 },
-    { x: "Dom", y: "18:00", heat: 100 },
+            { x: "Seg", y: "18:00", heat: 100 },
+            { x: "Ter", y: "18:00", heat: 110 },
+            { x: "Qua", y: "18:00", heat: 110 },
+            { x: "Qui", y: "18:00", heat: 90 },
+            { x: "Sex", y: "18:00", heat: 130 },
+            { x: "Sab", y: "18:00", heat: 180 },
+            { x: "Dom", y: "18:00", heat: 100 },
 
-    { x: "Seg", y: "21:00", heat: 50 },
-    { x: "Ter", y: "21:00", heat: 55 },
-    { x: "Qua", y: "21:00", heat: 55 },
-    { x: "Qui", y: "21:00", heat: 40 },
-    { x: "Sex", y: "21:00", heat: 65 },
-    { x: "Sab", y: "21:00", heat: 90 },
-    { x: "Dom", y: "21:00", heat: 50 },
-];
+            { x: "Seg", y: "21:00", heat: 50 },
+            { x: "Ter", y: "21:00", heat: 55 },
+            { x: "Qua", y: "21:00", heat: 55 },
+            { x: "Qui", y: "21:00", heat: 40 },
+            { x: "Sex", y: "21:00", heat: 65 },
+            { x: "Sab", y: "21:00", heat: 90 },
+            { x: "Dom", y: "21:00", heat: 50 },
+        ];
     }
 
 
