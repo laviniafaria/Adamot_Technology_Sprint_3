@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../assets/image__2_-removebg-preview.png" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
   <link rel="stylesheet" href="../css/style.css">
   <title>Adamot</title>
 </head>
@@ -83,32 +84,10 @@
           </div>
         </div>
 
-        <div class="heatmap-container">
-          <h2>Mapa de Calor</h2>
-
-          <svg id="shoppingMap" viewBox="0 0 400 197" class="heatmap">
-            <rect id="entrada1" x="20" y="30" width="80" height="80" rx="20">
-              <title>0 Pessoas</title>
-            </rect>
-            <rect id="entrada2" x="150" y="30" width="80" height="80" rx="20">
-              <title>0 Pessoas</title>
-            </rect>
-            <rect id="entrada3" x="280" y="30" width="80" height="80" rx="20">
-              <title> 0 Pessoas</title>
-            </rect>
-
-            <text x="25" y="130" style="opacity: 0.5;">Entrada A</text>
-            <text x="155" y="130" style="opacity: 0.5;">Entrada B</text>
-            <text x="285" y="130" style="opacity: 0.5;">Entrada C</text>
-          </svg>
-
-          <div class="legend">
-            <div class="legend-color" style="background-color: #e74c3c;"></div><span style="opacity: 0.5;">~100
-              Pessoas</span>
-            <div class="legend-color" style="background-color: #f1c40f;"></div><span style="opacity: 0.5;">~50
-              Pessoas</span>
-            <div class="legend-color" style="background-color: #2ecc71;"></div><span style="opacity: 0.5;">~10
-              Pessoas</span>
+        <div class="graphs-container">
+          <div class="heatmap-container">
+            <h2>Mapa de calor</h2>
+            <div class="calorento" id="MapaA"></div>
           </div>
         </div>
       </div>
@@ -138,8 +117,8 @@
   function obterDadosGrafico(fkShopping) {
 
     if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
+      clearTimeout(proximaAtualizacao);
+    }
 
     fetch(`/registros/ultimos/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
@@ -163,7 +142,7 @@
   // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
   // A função *plotarGrafico* também invoca a função *atualizarGrafico*
   function plotarGrafico(resposta, fkShopping) {
-      
+
 
     console.log('iniciando plotagem do gráfico...');
 
@@ -248,7 +227,7 @@
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(() => atualizarGrafico(fkShopping, dados, myChart), 10000);
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(fkShopping, dados, myChart), 2000);
       }
     })
       .catch(function (error) {
@@ -257,32 +236,131 @@
 
   }
 
-  const entrada = [
-    { id: "entrada1", nome: "Entrada A", valor: 100 },
-    { id: "entrada2", nome: "Entrada B", valor: 50 },
-    { id: "entrada3", nome: "Entrada C", valor: 0 }
-  ];
 
-  const colorScale = d3.scaleLinear()
-    .domain([0, 50, 100])
-    .range(["#2ecc71", "#f1c40f", "#e74c3c"]);
+  anychart.onDocumentReady(function () {
+    // create a heatmap
+    var chart = anychart.heatMap(getDataA());
+    // set a custom color scale
+    var colorScale = anychart.scales.ordinalColor();
+    colorScale.ranges([
+      { less: 50, color: "#B0D8A4" },
+      { from: 50, to: 100, color: "#FEE191" },
+      { from: 100, to: 150, color: "#FD8060" },
+      { from: 150, to: 200, color: "#F07355" },
+      { greater: 200, color: "#CC333F" }
+    ]);
+    chart.colorScale(colorScale);
+    // style the coloring in the hovered state
+    chart
+      .hovered()
+      .fill(function () {
+        return anychart.color.darken(this.sourceColor, 0.25);
+      });
+    // hide the labels
+    chart.labels(false);
+    // customize the axes
+    chart.xAxis().stroke(null);
+    chart.yAxis().stroke(null);
+    chart.yAxis().labels().padding([0, 10, 0, 0]);
+    chart.xAxis().labels().padding([0, 0, 10, 0]);
+    // set the tooltip
+    chart.tooltip().title().useHtml(true);
+    chart
+      .tooltip()
+      .useHtml(true)
+      .titleFormat(function () {
+        return "Pessoas - " + this.heat;
+      })
+      .format(function () {
+        return (
+          '<span style="color: #CECECE">Coordenada X </span>' +
+          this.x +
+          "<br/>" +
+          '<span style="color: #CECECE">Coordenada Y </span>' +
+          this.y
+        );
+      });
+    // name the heatmap
+    chart
+      .title()
+      .enabled(false)
+      .text("Mapa de Calor do Shopping Y")
+      .padding([0, 0, 20, 0]);
+    // set the container for the heatmap
+    chart.container("MapaA");
+    // draw the heatmap
+    chart.draw();
+  });
+  // add the data
+  function getDataA() {
+    return [
+      { x: "Seg", y: "00:00", heat: 10 },
+      { x: "Ter", y: "00:00", heat: 10 },
+      { x: "Qua", y: "00:00", heat: 10 },
+      { x: "Qui", y: "00:00", heat: 10 },
+      { x: "Sex", y: "00:00", heat: 15 },
+      { x: "Sab", y: "00:00", heat: 20 },
+      { x: "Dom", y: "00:00", heat: 15 },
 
+      { x: "Seg", y: "03:00", heat: 10 },
+      { x: "Ter", y: "03:00", heat: 10 },
+      { x: "Qua", y: "03:00", heat: 10 },
+      { x: "Qui", y: "03:00", heat: 10 },
+      { x: "Sex", y: "03:00", heat: 20 },
+      { x: "Sab", y: "03:00", heat: 30 },
+      { x: "Dom", y: "03:00", heat: 20 },
 
+      { x: "Seg", y: "06:00", heat: 40 },
+      { x: "Ter", y: "06:00", heat: 50 },
+      { x: "Qua", y: "06:00", heat: 50 },
+      { x: "Qui", y: "06:00", heat: 40 },
+      { x: "Sex", y: "06:00", heat: 60 },
+      { x: "Sab", y: "06:00", heat: 80 },
+      { x: "Dom", y: "06:00", heat: 40 },
 
+      { x: "Seg", y: "09:00", heat: 100 },
+      { x: "Ter", y: "09:00", heat: 110 },
+      { x: "Qua", y: "09:00", heat: 110 },
+      { x: "Qui", y: "09:00", heat: 90 },
+      { x: "Sex", y: "09:00", heat: 120 },
+      { x: "Sab", y: "09:00", heat: 140 },
+      { x: "Dom", y: "09:00", heat: 100 },
 
-  function atualizarMapa() {
+      { x: "Seg", y: "12:00", heat: 150 },
+      { x: "Ter", y: "12:00", heat: 160 },
+      { x: "Qua", y: "12:00", heat: 160 },
+      { x: "Qui", y: "12:00", heat: 140 },
+      { x: "Sex", y: "12:00", heat: 170 },
+      { x: "Sab", y: "12:00", heat: 210 },
+      { x: "Dom", y: "12:00", heat: 150 },
 
-    entrada.forEach(e => {
-      d3.select(`#${e.id}`)
-        .transition()
-        .duration(800)
-        .attr("fill", colorScale(e.valor))
-        .select("title")
-        .text(`${e.nome}: ${e.valor} Pessoas`)
-    })
+      { x: "Seg", y: "15:00", heat: 160 },
+      { x: "Ter", y: "15:00", heat: 170 },
+      { x: "Qua", y: "15:00", heat: 170 },
+      { x: "Qui", y: "15:00", heat: 150 },
+      { x: "Sex", y: "15:00", heat: 180 },
+      { x: "Sab", y: "15:00", heat: 220 },
+      { x: "Dom", y: "15:00", heat: 160 },
+
+      { x: "Seg", y: "18:00", heat: 130 },
+      { x: "Ter", y: "18:00", heat: 140 },
+      { x: "Qua", y: "18:00", heat: 140 },
+      { x: "Qui", y: "18:00", heat: 120 },
+      { x: "Sex", y: "18:00", heat: 160 },
+      { x: "Sab", y: "18:00", heat: 200 },
+      { x: "Dom", y: "18:00", heat: 130 },
+
+      { x: "Seg", y: "21:00", heat: 60 },
+      { x: "Ter", y: "21:00", heat: 70 },
+      { x: "Qua", y: "21:00", heat: 70 },
+      { x: "Qui", y: "21:00", heat: 50 },
+      { x: "Sex", y: "21:00", heat: 80 },
+      { x: "Sab", y: "21:00", heat: 100 },
+      { x: "Dom", y: "21:00", heat: 60 },
+    ];
   }
 
-  atualizarMapa()
+  atualizarGrafico()
 
 </script>
 
