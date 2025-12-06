@@ -137,5 +137,13 @@ JOIN usuario AS u
 JOIN endereco AS e
     ON s.idShopping = e.fkShopping;
 
--- DROP DATABASE adamot;
+-- view total visitantes                    
+create view vw_total_visitantes as select sum(valor) as total, shopping_id from registro join sensor on fkSensor = idSensor join shopping on shopping_id = idShopping group by shopping_id;
+select * from vw_total_visitantes where shopping_id = 2;
+
+ -- view pico de fluxo
+create view vw_pico as select date_format(dtHora, '%H:00') as hora, sum(valor) as total, shopping_id from registro join sensor on fkSensor = idSensor
+join shopping on shopping_id = idShopping group by shopping_id, hora;
+
+select * from vw_pico where shopping_id = 2 limit 1;
 
