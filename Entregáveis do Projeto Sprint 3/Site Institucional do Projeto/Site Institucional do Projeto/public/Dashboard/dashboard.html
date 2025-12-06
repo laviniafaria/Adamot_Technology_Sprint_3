@@ -97,7 +97,6 @@
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
   let proximaAtualizacao;
-
   obterDadosGrafico(fkShopping)
   // O gráfico é construído com três funções:
   // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
@@ -147,7 +146,7 @@
     let dataPessoas = [];
 
     for (let i = 0; i < resposta.length; i++) {
-      labels.push(resposta[i].hora + ':00')
+      labels.push(resposta[i].hora)
       dataPessoas.push(resposta[i].pessoas)
     }
 
@@ -356,7 +355,6 @@
     ];
   }
 
-  atualizarGrafico()
 
 </script>
 

@@ -59,15 +59,15 @@
             </div>
             <section class="kpis">
 
-                <button onclick="EntA()" class="card botSen" id="botA">
+                <button onclick="EntA(1)" class="card botSen" id="botA">
                     <h3>Entrada A</h3>
                 </button>
 
-                <button onclick="EntB()" class="card botSen" id="botB">
+                <button onclick="EntB(2)" class="card botSen" id="botB">
                     <h3>Entrada B</h3>
                 </button>
 
-                <button onclick="EntC()" class="card botSen" id="botC">
+                <button onclick="EntC(3)" class="card botSen" id="botC">
                     <h3>Entrada C</h3>
                 </button>
             </section>
@@ -121,6 +121,7 @@
         GraEntA.style = "display: block;"
         GraEntB.style = "display: none;"
 
+        carregarSensor(1)
     }
 
     function EntB() {
@@ -128,7 +129,9 @@
         botA.style = "background-color: #ffffff;"
         botC.style = "background-color: #ffffff;"
         GraEntA.style = "display: none;"
-        GraEntB.style = "display: blcok;"
+        GraEntB.style = "display: block;"
+
+        carregarSensor(2)
     }
 
     function EntC() {
@@ -137,60 +140,84 @@
         botA.style = "background-color: #ffffff;"
         GraEntA.style = "display: none;"
         GraEntB.style = "display: none;"
+
+        carregarSensor(3)
     }
 
-    const ctx = document.getElementById('linechart').getContext('2d');
-    const ctxB = document.getElementById('linechartB').getContext('2d');
 
+    var chartA;
+    var chartB;
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '13:00', '14:00', '16:00', '17:00', '18:00', '19:00'],
-            datasets: [{
-                label: 'Número de Pessoas',
-                data: [25, 18, 60, 10, 150, 50, 100],
-                borderWidth: 2,
-                backgroundColor: "rgba(138,43,226,0.2)",
-                borderColor: "violet",
-                tension: 0.3,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+    function carregarSensor(idSensor) {
+        fetch(`/sensor/${idSensor}/dados`)
+            .then(res => res.json())
+            .then(dados => {
+
+                let horas = [];
+                let valores = [];
+
+                for (let i = 0; i < dados.length; i++) {
+                    horas.push(dados[i].hora);
+                    valores.push(dados[i].pessoas);
                 }
-            }
-        }
-    });
 
+                let ctx;
 
-    new Chart(ctxB, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '13:00', '14:00', '16:00', '17:00', '18:00', '19:00'],
-            datasets: [{
-                label: 'Número de Pessoas',
-                data: [20, 15, 30, 20, 100, 60, 50],
-                borderWidth: 2,
-                backgroundColor: "rgba(138,43,226,0.2)",
-                borderColor: "violet",
-                tension: 0.3,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+                if (GraEntA.style.display == "block") {
+
+                    if (chartA != null) {
+                        chartA.destroy();
+                    }
+
+                    ctx = document.getElementById('linechart').getContext('2d');
+
+                    chartA = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: horas,
+                            datasets: [{
+                                label: "Pessoas",
+                                data: valores,
+                                borderWidth: 2,
+                                backgroundColor: "rgba(138,43,226,0.2)",
+                                borderColor: "violet",
+                                tension: 0.3,
+                                fill: true
+                            }]
+                        }
+                    });
                 }
-            }
-        }
-    });
+
+
+                else if (GraEntB.style.display == "block") {
+
+                    if (chartB != null) {
+                        chartB.destroy();
+                    }
+
+                    ctx = document.getElementById('linechartB').getContext('2d');
+
+                    chartB = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: horas,
+                            datasets: [{
+                                label: "Pessoas",
+                                data: valores,
+                                borderWidth: 2,
+                                backgroundColor: "rgba(138,43,226,0.2)",
+                                borderColor: "violet",
+                                tension: 0.3,
+                                fill: true
+                            }]
+                        }
+                    });
+                }
+
+            });
+    }
+
+
 
 
 

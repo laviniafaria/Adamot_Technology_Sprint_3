@@ -19,6 +19,8 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var registroRouter = require("./src/routes/registros");
 var empresasRouter = require("./src/routes/empresas");
+var sensorRouter = require("./src/routes/sensor");
+
 
 
 
@@ -32,6 +34,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/registros", registroRouter);
 app.use("/empresas", empresasRouter);
+app.use("/sensor", sensorRouter);
 
 
 

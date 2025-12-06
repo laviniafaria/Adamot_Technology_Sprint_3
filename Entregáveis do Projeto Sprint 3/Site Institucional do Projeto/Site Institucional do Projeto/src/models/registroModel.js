@@ -3,12 +3,12 @@ var database = require("../database/config");
 function buscarUltimosRegistros(fkShopping, limite_linhas) {
 
     var instrucaoSql = `SELECT 
-                    DATE_FORMAT(r.dtHora, '%H') AS hora,
+                    DATE_FORMAT(r.dtHora, '%H:%i') AS hora,
                     SUM(r.valor) AS pessoas
                     FROM registro r
                     JOIN sensor s ON r.fkSensor = s.idSensor
                     WHERE s.shopping_id = ${fkShopping}
-                    GROUP BY  DATE_FORMAT(r.dtHora, '%H')
+                    GROUP BY  DATE_FORMAT(r.dtHora, '%H:%i')
                     ORDER BY hora DESC LIMIT ${limite_linhas}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -19,7 +19,7 @@ function buscarRegistrosEmTempoReal(fkShopping) {
 
     var instrucaoSql = `SELECT 
                         SUM(r.valor) as pessoas,
-                        DATE_FORMAT(r.dtHora,'%H:00') as momento_grafico 
+                        DATE_FORMAT(r.dtHora,'%H:%i') as momento_grafico 
                         FROM registro r
                         JOIN sensor s ON r.fkSensor = s.idSensor 
                         WHERE s.shopping_id = ${fkShopping}
@@ -33,12 +33,12 @@ function buscarRegistrosEmTempoReal(fkShopping) {
 function buscarRegistroSensorA(fkShopping, limite_linhas) {
 
     var instrucaoSql = `SELECT 
-                    DATE_FORMAT(r.dtHora, '%H') AS hora,
+                    DATE_FORMAT(r.dtHora, '%H:%i') AS hora,
                     SUM(r.valor) AS pessoas
                     FROM registro r
                     JOIN sensor s ON r.fkSensor = s.idSensor
                     WHERE s.shopping_id = ${fkShopping}
-                    GROUP BY  DATE_FORMAT(r.dtHora, '%H')
+                    GROUP BY  DATE_FORMAT(r.dtHora, '%H:%i')
                     ORDER BY hora DESC LIMIT ${limite_linhas}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
