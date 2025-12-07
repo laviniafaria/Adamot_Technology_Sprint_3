@@ -22,18 +22,18 @@ INSERT INTO shopping (nomeShopping, numeroTel, cnpj, token) VALUES
 CREATE TABLE usuario(
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(45) UNIQUE,
-    cpf CHAR(11) UNIQUE,
     senha VARCHAR(45),
     fkShopping INT NOT NULL,
     CONSTRAINT fk_shop_cad FOREIGN KEY (fkShopping) REFERENCES shopping(idShopping)
 );
 
-INSERT INTO usuario (email, cpf, senha, fkShopping) VALUES
-('ana@cnorte.com',   '12345678901', 'senha123', 1),
-('bruno@iguatemi.com', '23456789012', '123senha', 2),
-('carla@morumbi.com',  '34567890123', 'abc123', 3),
-('diego@paulista.com', '45678901234', 'senha456', 4),
-('erika@eldorado.com', '56789012345', 'pass789', 5);
+INSERT INTO usuario (email, senha, fkShopping) VALUES
+('ana@cnorte.com', 'senha123', 1),
+('bruno@iguatemi.com', '123senha', 2),
+('carla@morumbi.com', 'abc123', 3),
+('diego@paulista.com', 'senha456', 4),
+('erika@eldorado.com', 'pass789', 5),
+('admadamot@gmail.com','adm@2025',null); 
 
 CREATE TABLE entrada (
 	idEntrada INT,

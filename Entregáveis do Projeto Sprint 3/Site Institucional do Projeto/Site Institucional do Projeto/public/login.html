@@ -64,33 +64,41 @@
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
+            if (emailVar == 'admadamot@gmail.com' && senhaVar == 'adm@2025') {
+            setTimeout(function () {
+                window.location = "../Dashboard/suporte.html"
+            }, 1000);    
+            } 
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.ID_SHOPPING = json.fkShopping;
-
-                    setTimeout(function () {
-                        window.location = "../Dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                   
-                });
-            }
-
+                
+                if (resposta.ok) {
+                    console.log(resposta);
+                    
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.ID_SHOPPING = json.fkShopping;
+                        
+                        setTimeout(function () {
+                            window.location = "../Dashboard/dashboard.html";
+                        }, 1000);
+                        
+                    });
+                    
+                } else {
+                    
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        
+                    });
+                }
+                
+                
         }).catch(function (erro) {
             console.log(erro);
         })
