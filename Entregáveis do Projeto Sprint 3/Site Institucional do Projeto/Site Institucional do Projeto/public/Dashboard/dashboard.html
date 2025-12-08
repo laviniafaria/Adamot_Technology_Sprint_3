@@ -377,19 +377,21 @@
 
     function kpiTotal(resposta1) {
   let registro = resposta1[0].total;
-  totalVisitantes.innerHTML = registro;
+  totalVisitantes.innerHTML = registro + ' pessoas';
   console.log(registro);
 }
 
 function kpiPico(resposta2) {
- let dado = resposta2[0].hora;  
- picoVisitantes.innerHTML = dado;
- console.log(dado);
+ let registro = resposta2[0].hora;
+ picoVisitantes.innerHTML = registro + 'h';
+ console.log(registro);
 }
 
 function kpiMedia(resposta3) {
-let registro = resposta3[0].media;
-mediaHora.innerHTML = registro;
+
+  let registro = resposta3[0].media;
+  mediaHora.innerHTML = registro + ' pessoas';
+  console.log(resposta3)
 }
 
 </script>
