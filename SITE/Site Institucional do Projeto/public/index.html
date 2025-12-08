@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adamot</title>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+
+<body>
+    <header>
+        <nav id="nav">
+            <div>
+                <img class="logo" src="assets/logo1.png" alt="">
+            </div>
+            <div class="btn_layout">
+                <div>
+                    <a href="#contato">Fale Conosco</a>
+                </div>
+                <div>
+                    <a href="login.html">Login</a>
+                </div>
+                <div>
+                    <a href="cadastro.html">Cadastrar</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Sessão 1  -->
+    <section class="sessão_1">
+        <div class="sessão_1-lugar">
+            <div class="sessão_1-centro">
+
+                <h2 style="font-size: 60px;">Transforme dados em <br><span>insights valiosos!</span></h2>
+                <p>Transforme números brutos de fluxo de pessoas em insights valiosos para potencializar estratégias,
+                    otimizar espaços e impulsionar o sucesso do seu negócio.</p>
+            </div>
+
+            <div class="sessão_1-image">
+                <img src="assets/image (2).png" alt="Análise de dados">
+            </div>
+        </div>
+    </section>
+    <!--Sessão 2-->
+    <section class="quem-somos-e-servicos">
+        <div class="duas-colunas">
+
+            <div class="coluna-quem-somos">
+                <h2 style="color: #6a3093;">Quem Somos</h2>
+                <p> Adamot foi fundada em 2025 por um grupo de estudantes de Analise e
+                    Desenvolvimento de Sistemas, com o propósito de revolucionar o monitoramento de fluxo de pessoas em
+                    shoppings centers e grandes centros comerciais. Nosso objetivo é oferecer aos clientes dados
+                    precisos e confiáveis, que auxiliem na tomada de decisões estratégicas de gestão.
+                    Por meio de dashboards intuitivos, proporcionamos uma visão clara do fluxo de visitantes, agregando
+                    valor ao seu negócio, otimizando recursos e potencializando os lucros do seu patrimônio. Nosso
+                    compromisso é entregar qualidade, tecnologia e atendimento especializado, fortalecendo a
+                    credibilidade
+                    dos dados que sustentam o sucesso de nossos clientes.</p>
+            </div>
+            <div class="coluna-servicos">
+                <h2>Nossos Serviços</h2>
+
+                <div class="cartoes">
+                    <div class="cartao">
+                        <h3>&#128200 Análise de Fluxo de Pessoas</h3>
+                        <p>Análise detalhada do fluxo de pessoas em tempo real para otimizar suas estratégias.</p>
+                        <br><br>
+                    </div>
+                    <div class="cartao">
+                        <h3> &#128221 Tomada de decisões</h3>
+                        <p>Transforme dados brutos em insights valiosos para tomada de decisões estratégicas.</p>
+                    </div>
+                </div>
+                <p class="oferece">Oferecemos soluções de análise de fluxo de pessoas para shopping centers, com
+                    tecnologia
+                    de ponta e insights valiosos para o seu negócio.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="simulator-box">
+        <div class="header">
+            <br><br><br>
+
+            <h1>Simulador Financeiro - Adamot</h1>
+
+            <p>Simule o impacto de suas decisões financeiras com nosso poderoso simulador financeiro.<br> Anule taxas,
+                explore cenários e otimize seus investimentos com precisão.<br>
+                Informe os dados dentro do box.</p>
+        </div>
+        <br>
+        <script defer src="js/simuladorFinanceiro.js"></script>
+
+        <div class="simulador">
+
+            <h4>Informe o faturamento anual em R$:</h4><input type="number" id="iptFaturamento"
+                placeholder="Ex: 1000000"> <br>
+            <div id="obrigatorio1"></div>
+            <br>
+
+            <h4>Informe o número de entradas principais que devem ser monitoradas:</h4> <input type="number"
+                id="iptEntradas" placeholder="Ex: 3"> <br>
+            <div id="obrigatorio2"></div>
+            <br>
+
+            <h4>Em quanto % você pretende aumentar seu lucro:</h4><input type="Number" id="iptPorcent"
+                placeholder="Ex:27"><br>
+            <div id="obrigatorio3"></div><br><br><br>
+            <div id="erro"></div><br>
+
+            <center> <button onclick="calcularOperação()" class="simular">Simular Operação</button></center><br>
+            <div id="mensagem"></div>
+
+
+            <br><br><br>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+    <!--  CONTATO (CENTRALIZADO)      -->
+    <!-- ============================= -->
+
+    <section class="contact" id="contato" style="text-align: center;">
+
+        <img class="gato" src="../assets/image__2_-removebg-preview.png" alt="Contato" style="margin-top: 0;">
+
+        <div class="header" style="text-align: center; margin-top: 0; padding-top: 0;">
+            <h2 style="margin-bottom: 0;">Fale Conosco</h2>
+
+            <script defer src="js/contato.js"></script>
+
+            <div class="form-group">
+                <p>Nome Completo</p> <input id="ipt_nome" type="text" placeholder="Ex: Meu nome é....">
+                <div id="erro_nome"></div>
+
+                <p>Email</p> <input id="ipt_email" type="text" placeholder="Ex: email@gmail.com">
+                <div id="erro_email"></div>
+
+                <p>Mensagem</p> <input id="ipt_mensagem" type="text" placeholder="Ex: Gostaria de falar sobre..">
+                <div id="erro_mensagem"></div>
+
+                <button onclick="contato()" class="me">Enviar Mensagem</button>
+                <br><br><br>
+                <div id="resultado"></div>
+
+                <div id="saidaMensagens">
+                </div>
+
+                <br><br>
+
+            </div>
+    </section>
+
+    <footer>
+
+        <div class="footer-contact">
+            <img src="../assets/logo1.png" alt="Logo Amanet">
+            <h3>Contato:</h3>
+            <p>Email:</p>
+            <a href="mailto:adamot.technology@gmail.com">adamot.technology@gmail.com</a>
+            <p>Telefone:</p>
+            <a href="contato">(11)99999-9999</a>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 adamot. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

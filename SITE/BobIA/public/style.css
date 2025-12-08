@@ -1,0 +1,154 @@
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* margem */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+    /*fonte do site*/
+}
+
+
+.ativo {
+    box-shadow: 0 2px 5px #490068;
+    background-color: #490068;
+    border-left: 10px solid #67006c;
+    border-radius: 10px;
+}
+
+
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sidebar img{
+    width: 150px;
+}
+
+
+.sidebar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    background-color: #8e44ad;
+    width: 200px;
+    height: 100vh;
+    margin-bottom: 0;
+    padding: 1rem;
+}
+
+
+.sidebar h3 {
+    margin: 0.5rem 0;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background-color: rgb(104, 5, 104);
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.5s, background-color 0.2s;
+}
+
+.content1 {
+    flex: 1;
+    padding: 1rem;
+}
+
+
+#container {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    color: #1F2A44;
+}
+
+textarea[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+select,
+button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #8e44ad;
+    color: #FFFFFF;
+    border: none;
+}
+
+button:hover {
+    background-color: #67006c;
+}
+
+#resposta {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #D0D3D4;
+    border: 1px solid #63666A;
+    text-align: left;
+    display: none;
+}
+
+.bloco-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #f3b9eb;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.explicacao {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+
+.link-container a {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #8e44ad; 
+    text-decoration: none; 
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.link-container a:hover {
+    background-color: #67006c; 
+}

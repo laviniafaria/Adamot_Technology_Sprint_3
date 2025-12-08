@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adamot | Login </title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+    <div class="cartao_principal">
+        
+        <div class="login">
+            
+            <h1>Login</h1>
+            
+            <h2>Olá, seja bem vindo novamente!</h2>
+            
+            <p>Registre-se para usar todos os recursos do site </p>
+            
+            <p> Entre com seu email:</p>
+            <input type="text" id="email_input" placeholder="Ex: adamot@gmail.com"><br>
+            <p> Entre com sua senha: </p>
+            <input type="password" id="senha_input" placeholder="Ex: 1234..."><br>
+            
+            <button onclick="entrar()">Entrar</button>
+            
+            <div id="entrar"></div>
+            <div id="limpar"></div>
+        </div>
+        
+        
+</body>
+<script>
+    function entrar() {
+
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            mensagem_erro.innerHTML = "Todos os campos devem ser preenchidos";
+
+            return false;
+        }
+
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (emailVar == 'admadamot@gmail.com' && senhaVar == 'adm@2025') {
+            setTimeout(function () {
+                window.location = "http://localhost:3001"
+            }, 1000);    
+            } else
+
+                
+                if (resposta.ok) {
+                    console.log(resposta);
+                    
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.ID_SHOPPING = json.fkShopping;
+                        
+                        setTimeout(function () {
+                            window.location = "../Dashboard/dashboard.html";
+                        }, 1000);
+                        
+                    });
+                    
+                } else {
+                    
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        
+                    });
+                }
+                
+                
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>
+
+</html>

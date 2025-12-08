@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/image__2_-removebg-preview.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-heatmap.min.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Adamot | Painel</title>
+</head>
+
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <img src="../assets/image__2_-removebg-preview.png" alt="logoadamot">
+      <h3 class="ativo"><a href="dashboard.html">
+          <img style="width: 20px;" src="../assets/painel.png" alt="dashemoji">
+          Painel
+        </a>
+      </h3>
+
+      <h3><a href="sensores.html">
+          <img style="width: 20px;" src="../assets/sensor.png" alt="sensor">
+          Sensores
+        </a>
+      </h3>
+
+      <h3><a href="chamados.html">
+          <img style="width: 20px;" src="../assets/atendimento-ao-cliente.png" alt="chamadoEmoji">
+          Chamados
+        </a>
+      </h3>
+
+      <h4><a href="../index.html">
+          <img style="width: 15px;" src="../assets/sair.png" alt="exit">
+          Sair
+        </a>
+      </h4>
+    </aside>
+
+    <div class="content1">
+      <div class="welcome-bar">Olá,
+        <span id="b_usuario"></span>
+      </div>
+
+      <section class="kpis">
+        <div class="card">
+          <h3>Total de Visitantes</h3>
+          <p id="totalVisitantes"></p>
+
+        </div>
+
+        <div class="card">
+          <h3>Pico de Fluxo</h3>
+          <p id="picoVisitantes"></p>
+        </div>
+
+        <div class="card">
+          <h3>Média do Fluxo por Hora</h3>
+          <p id="mediaHora"></p>
+        </div>
+      </section>
+
+      <div class="graphs-container">
+        <div class="chart-container">
+          <h2>Fluxo por Hora</h2>
+          <canvas id="linechart"></canvas>
+          <div>
+            <span style="opacity: 0.5;">Horários</span>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+<script>
+  var fkShopping = sessionStorage.ID_SHOPPING;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  let proximaAtualizacao;
+
+  obterDadosGrafico(fkShopping);
+
+  function obterDadosGrafico(fkShopping) {
+
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/registros/ultimos/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
+
+          plotarGrafico(resposta, fkShopping);
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  fetch(`/registros/totalVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta1) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta1)}`);
+        kpiTotal(resposta1);
+
+      });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+  fetch(`/registros/picoVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta2) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
+        kpiPico(resposta2);
+
+      });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+  fetch(`/registros/mediaVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta3) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta3)}`);
+        kpiMedia(resposta3);
+
+      });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+
+  function plotarGrafico(resposta, fkShopping) {
+
+
+    console.log('iniciando plotagem do gráfico...');
+
+    let labels = [];
+    let dataPessoas = [];
+
+    for (let i = 0; i < resposta.length; i++) {
+      labels.push(resposta[i].hora)
+      dataPessoas.push(resposta[i].pessoas)
+    }
+
+    let dados = {
+      labels: labels,
+      datasets: [{
+        label: 'Número de Pessoas',
+        data: dataPessoas,
+        borderWidth: 2,
+        backgroundColor: "rgba(138,43,226,0.2)",
+        borderColor: "violet",
+        tension: 0.3,
+        fill: true
+      }]
+    };
+
+    const config = {
+      type: 'line',
+      data: dados,
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    let myChart = new Chart(
+      document.getElementById(`linechart`),
+      config
+    );
+
+    setTimeout(() => atualizarGrafico(fkShopping, dados, myChart), 2000);
+  }
+
+  function atualizarGrafico(fkShopping, dados, myChart) {
+
+
+
+    fetch(`/registros/tempo-real/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json()
+          .then(function (novoRegistro) {
+
+            if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+
+            } else {
+              dados.labels.shift()
+              dados.labels.push(novoRegistro[0].momento_grafico)
+
+              dados.datasets[0].data.shift()
+              dados.datasets[0].data.push(novoRegistro[0].pessoas)
+
+              myChart.update();
+            }
+
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(fkShopping, dados, myChart), 2000);
+          });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(fkShopping, dados, myChart), 2000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+  }
+
+
+  anychart.onDocumentReady(function () {
+
+    var chart = anychart.heatMap(getDataA());
+
+    var colorScale = anychart.scales.ordinalColor();
+    colorScale.ranges([
+      { less: 50, color: "#B0D8A4" },
+      { from: 50, to: 100, color: "#FEE191" },
+      { from: 100, to: 150, color: "#FD8060" },
+      { from: 150, to: 200, color: "#F07355" },
+      { greater: 200, color: "#CC333F" }
+    ]);
+    chart.colorScale(colorScale);
+
+    chart
+      .hovered()
+      .fill(function () {
+        return anychart.color.darken(this.sourceColor, 0.25);
+      });
+    chart.labels(false);
+
+    chart.xAxis().stroke(null);
+    chart.yAxis().stroke(null);
+    chart.yAxis().labels().padding([0, 10, 0, 0]);
+    chart.xAxis().labels().padding([0, 0, 10, 0]);
+
+    chart.tooltip().title().useHtml(true);
+    chart
+      .tooltip()
+      .useHtml(true)
+      .titleFormat(function () {
+        return "Pessoas - " + this.heat;
+      })
+      .format(function () {
+        return (
+          '<span style="color: #CECECE">Coordenada X </span>' +
+          this.x +
+          "<br/>" +
+          '<span style="color: #CECECE">Coordenada Y </span>' +
+          this.y
+        );
+      });
+
+    chart
+      .title()
+      .enabled(false)
+      .text("Mapa de Calor do Shopping Y")
+      .padding([0, 0, 20, 0]);
+
+    chart.container("MapaA");
+
+    chart.draw();
+  });
+
+  function getDataA() {
+    return [
+      { x: "Seg", y: "00:00", heat: 10 },
+      { x: "Ter", y: "00:00", heat: 10 },
+      { x: "Qua", y: "00:00", heat: 10 },
+      { x: "Qui", y: "00:00", heat: 10 },
+      { x: "Sex", y: "00:00", heat: 15 },
+      { x: "Sab", y: "00:00", heat: 20 },
+      { x: "Dom", y: "00:00", heat: 15 },
+
+      { x: "Seg", y: "03:00", heat: 10 },
+      { x: "Ter", y: "03:00", heat: 10 },
+      { x: "Qua", y: "03:00", heat: 10 },
+      { x: "Qui", y: "03:00", heat: 10 },
+      { x: "Sex", y: "03:00", heat: 20 },
+      { x: "Sab", y: "03:00", heat: 30 },
+      { x: "Dom", y: "03:00", heat: 20 },
+
+      { x: "Seg", y: "06:00", heat: 40 },
+      { x: "Ter", y: "06:00", heat: 50 },
+      { x: "Qua", y: "06:00", heat: 50 },
+      { x: "Qui", y: "06:00", heat: 40 },
+      { x: "Sex", y: "06:00", heat: 60 },
+      { x: "Sab", y: "06:00", heat: 80 },
+      { x: "Dom", y: "06:00", heat: 40 },
+
+      { x: "Seg", y: "09:00", heat: 100 },
+      { x: "Ter", y: "09:00", heat: 110 },
+      { x: "Qua", y: "09:00", heat: 110 },
+      { x: "Qui", y: "09:00", heat: 90 },
+      { x: "Sex", y: "09:00", heat: 120 },
+      { x: "Sab", y: "09:00", heat: 140 },
+      { x: "Dom", y: "09:00", heat: 100 },
+
+      { x: "Seg", y: "12:00", heat: 150 },
+      { x: "Ter", y: "12:00", heat: 160 },
+      { x: "Qua", y: "12:00", heat: 160 },
+      { x: "Qui", y: "12:00", heat: 140 },
+      { x: "Sex", y: "12:00", heat: 170 },
+      { x: "Sab", y: "12:00", heat: 210 },
+      { x: "Dom", y: "12:00", heat: 150 },
+
+      { x: "Seg", y: "15:00", heat: 160 },
+      { x: "Ter", y: "15:00", heat: 170 },
+      { x: "Qua", y: "15:00", heat: 170 },
+      { x: "Qui", y: "15:00", heat: 150 },
+      { x: "Sex", y: "15:00", heat: 180 },
+      { x: "Sab", y: "15:00", heat: 220 },
+      { x: "Dom", y: "15:00", heat: 160 },
+
+      { x: "Seg", y: "18:00", heat: 130 },
+      { x: "Ter", y: "18:00", heat: 140 },
+      { x: "Qua", y: "18:00", heat: 140 },
+      { x: "Qui", y: "18:00", heat: 120 },
+      { x: "Sex", y: "18:00", heat: 160 },
+      { x: "Sab", y: "18:00", heat: 200 },
+      { x: "Dom", y: "18:00", heat: 130 },
+
+      { x: "Seg", y: "21:00", heat: 60 },
+      { x: "Ter", y: "21:00", heat: 70 },
+      { x: "Qua", y: "21:00", heat: 70 },
+      { x: "Qui", y: "21:00", heat: 50 },
+      { x: "Sex", y: "21:00", heat: 80 },
+      { x: "Sab", y: "21:00", heat: 100 },
+      { x: "Dom", y: "21:00", heat: 60 },
+    ];
+  }
+
+  function kpiTotal(resposta1) {
+    let registro = resposta1[0].total;
+    totalVisitantes.innerHTML = registro + ' pessoas';
+    console.log(registro);
+  }
+
+  function kpiPico(resposta2) {
+    let registro = resposta2[0].hora;
+    picoVisitantes.innerHTML = registro + 'h';
+    console.log(registro);
+  }
+
+  function kpiMedia(resposta3) {
+
+    let registro = resposta3[0].media;
+    mediaHora.innerHTML = registro + ' pessoas';
+    console.log(resposta3)
+  }
+
+</script>
+
+</html>
