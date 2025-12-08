@@ -375,57 +375,60 @@ nav {
 footer {
     background-color: rgba(63, 25, 96, 1);
     color: #fff;
-    padding: 20px 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 0;                  /* REMOVE O ESPAÇO ENTRE A SEÇÃO ACIMA */
-    text-align: center;             /* CENTRALIZA TUDO */
+    padding: 30px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 0;
+    font-family: 'Arial', sans-serif;
 }
 
-/* remover container lateral antigo */
 footer .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px;
+    align-items: flex-start;
+    padding-bottom: 20px;
 }
 
-/* centralizar tudo no footer */
 .footer-contact {
-    text-align: center;
-    margin-bottom: 15px;
+    margin: 0;
+    text-align: left;
 }
 
 .footer-contact img {
     max-width: 160px;
-    position: relative;
-    top: 8px;
-    left: 0;                         /* remove deslocamento */
-    margin: 0 auto;                  /* centraliza */
-    display: block;
+    position: static;
+    margin: 0 0 15px 0;
+    display: inline-block;
 }
 
-/* remover deslocamentos do footer antigo */
-.footer-menu,
-.footer-contact {
-    left: 0 !important;
+.footer-contact p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-menu {
     text-align: center;
 }
 
 .footer-info {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* copyright */
 .copyright {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 10px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding-top: 20px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+    text-align: center;
 }
 
 .footer-links {
@@ -433,9 +436,29 @@ footer .container {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    margin: 0 5px;
-    transition: color 0.3s;
-    font-size: 12px;
+    margin: 0 10px;
+    transition: color 0.3s, opacity 0.3s;
+    font-size: 13px;
 }
+
+.footer-links a:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+    .footer-contact,
+    .footer-menu {
+        text-align: center;
+    }
+
+    .footer-contact img {
+        margin: 0 auto 15px auto;
+    }
+
+    .footer-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
