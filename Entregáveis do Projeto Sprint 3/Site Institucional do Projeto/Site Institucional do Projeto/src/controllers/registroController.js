@@ -78,10 +78,30 @@ function picoVisitantes(req, res) {
     });
 }
 
+function mediaVisitantes(req, res) {
+
+    var fkShopping = req.params.fkShopping;
+
+    console.log(`Recuperando registros em tempo real`);
+
+    registroModel.mediaVisitantes(fkShopping).then(function (resultado3) {
+        if (resultado3.length > 0) {
+            res.status(200).json(resultado3);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimosRegistros,
     buscarRegistrosEmTempoReal,
     totalVisitantes,
-    picoVisitantes
+    picoVisitantes,
+    mediaVisitantes
 
 }

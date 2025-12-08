@@ -19,4 +19,8 @@ router.get("/picoVisitantes/:fkShopping"), function (req, res) {
     registroController.picoVisitantes(req, res);
 }
 
+router.get("/mediaVisitantes/:fkShopping"), function (req, res) {
+    registroController.mediaVisitantes(req, res);
+}
+
 module.exports = router;

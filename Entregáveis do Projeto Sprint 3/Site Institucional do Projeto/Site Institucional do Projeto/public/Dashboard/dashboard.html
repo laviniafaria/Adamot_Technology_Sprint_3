@@ -56,18 +56,18 @@
       <section class="kpis">
         <div class="card">
           <h3>Total de Visitantes</h3>
-          <p id="totalVisitantes">3.000</p>
+          <p id="totalVisitantes"></p>
 
         </div>
 
         <div class="card">
           <h3>Pico de Fluxo</h3>
-          <p id="picoFluxo">17h</p>
+          <p id="picoVisitantes"></p>
         </div>
 
         <div class="card">
           <h3>Média do Fluxo por Hora</h3>
-          <p id="mediaHora">185</p>
+          <p id="mediaHora"></p>
         </div>
       </section>
 
@@ -124,7 +124,7 @@
       });
   }
 
-  fetch(`/registros/fluxoVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+  fetch(`/registros/totalVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta1) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta1)}`);
@@ -144,6 +144,21 @@
         response.json().then(function (resposta2) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
           kpiPico(resposta2);
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+      fetch(`/registros/mediaVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta3) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta3)}`);
+          kpiMedia(resposta3);
 
         });
       } else {
@@ -361,19 +376,20 @@
   }
 
     function kpiTotal(resposta1) {
-  if (resposta1.length > 0) {
-    totalVisitantes.innerHTML = resposta1[0].total;
-  } else {
-    totalVisitantes.innerHTML = "0";
-  }
+  let registro = resposta1[0].total;
+  totalVisitantes.innerHTML = registro;
+  console.log(registro);
 }
 
 function kpiPico(resposta2) {
-  if (resposta2.length > 0) {
-    picoFluxo.innerHTML = resposta1[0].hora;
-  } else {
-    picoFluxo.innerHTML = "0";
-  }
+ let dado = resposta2[0].hora;  
+ picoVisitantes.innerHTML = dado;
+ console.log(dado);
+}
+
+function kpiMedia(resposta3) {
+let registro = resposta3[0].media;
+mediaHora.innerHTML = registro;
 }
 
 </script>

@@ -60,10 +60,18 @@ function picoVisitantes(fkShopping) {
     return database.executar(instrucaoSql);  
 }
 
+function mediaVisitantes(fkShopping) {
+  var instrucaoSql = `select * from vw_media where shopping_id = ${fkShopping} limit 1;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);  
+}
+
 module.exports = {
     buscarUltimosRegistros,
     buscarRegistrosEmTempoReal,
     buscarRegistroSensorA,
     totalVisitantes,
-    picoVisitantes
+    picoVisitantes,
+    mediaVisitantes
 }

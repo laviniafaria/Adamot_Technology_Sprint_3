@@ -147,3 +147,10 @@ join shopping on shopping_id = idShopping group by shopping_id, hora;
 
 select * from vw_pico where shopping_id = 2 limit 1;
 
+ -- view media por horas
+alter view vw_media as select shopping_id, date(dtHora) as dia, round(sum(valor) / count(distinct hour(dtHora)), 2) as media
+from registro
+join sensor on fkSensor = idSensor
+group by shopping_id, dia;
+
+select * from vw_media where shopping_id = 2 limit 1;
