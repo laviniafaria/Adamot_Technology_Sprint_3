@@ -15,6 +15,60 @@ body {
     padding: 20px;
 }
 
+header {
+    background-color: #8e44ad;
+    padding: 15px 0;
+    font-family: Arial;
+    margin-top: 0;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+.logo {
+    width: 190px;
+    position: relative;
+    right: 180px;
+}
+
+.btn_layout {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 0;
+    gap: 15px;
+}
+
+.btn_layout a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 20px;
+    font-family: Arial;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+    margin-right: 50px;
+    left: 200px;
+}
+
+.btn_layout a:hover {
+    color: #4e1566;
+}
+
+#agora {
+    color: #2c0935;
+    text-decoration: none;
+    cursor: pointer;
+}
 .cartao_principal {
     max-width: 800px;
     width: 100%;
