@@ -172,7 +172,6 @@
 
   function plotarGrafico(resposta, fkShopping) {
 
-
     console.log('iniciando plotagem do gráfico...');
 
     let labels = [];
@@ -226,14 +225,14 @@
         response.json()
           .then(function (novoRegistro) {
 
-            if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+            let novaHora = novoRegistro[0].hora;
 
-            } else {
-              dados.labels.shift()
-              dados.labels.push(novoRegistro[0].momento_grafico)
+            if (novaHora !== dados.labels[dados.labels.length - 1]) {
+              dados.labels.shift();
+              dados.labels.push(novaHora);
 
-              dados.datasets[0].data.shift()
-              dados.datasets[0].data.push(novoRegistro[0].pessoas)
+              dados.datasets[0].data.shift();
+              dados.datasets[0].data.push(novoRegistro[0].pessoas);
 
               myChart.update();
             }
@@ -251,6 +250,75 @@
       });
 
   }
+
+
+
+
+  var seg_00 = 0;
+  var ter_00 = 0;
+  var qua_00 = 0;
+  var qui_00 = 0;
+  var sex_00 = 0;
+  var sab_00 = 0;
+  var dom_00 = 0;
+
+  var seg_03 = 0;
+  var ter_03 = 0;
+  var qua_03 = 0;
+  var qui_03 = 0;
+  var sex_03 = 0;
+  var sab_03 = 0;
+  var dom_03 = 0;
+
+  var seg_06 = 0;
+  var ter_06 = 0;
+  var qua_06 = 0;
+  var qui_06 = 0;
+  var sex_06 = 0;
+  var sab_06 = 0;
+  var dom_06 = 0;
+
+  var seg_09 = 0;
+  var ter_09 = 0;
+  var qua_09 = 0;
+  var qui_09 = 0;
+  var sex_09 = 0;
+  var sab_09 = 0;
+  var dom_09 = 0;
+
+  var seg_12 = 0;
+  var ter_12 = 0;
+  var qua_12 = 0;
+  var qui_12 = 0;
+  var sex_12 = 0;
+  var sab_12 = 0;
+  var dom_12 = 0;
+
+  var seg_15 = 0;
+  var ter_15 = 0;
+  var qua_15 = 0;
+  var qui_15 = 0;
+  var sex_15 = 0;
+  var sab_15 = 0;
+  var dom_15 = 0;
+
+  var seg_18 = 0;
+  var ter_18 = 0;
+  var qua_18 = 0;
+  var qui_18 = 0;
+  var sex_18 = 0;
+  var sab_18 = 0;
+  var dom_18 = 0;
+
+  var seg_21 = 0;
+  var ter_21 = 0;
+  var qua_21 = 0;
+  var qui_21 = 0;
+  var sex_21 = 0;
+  var sab_21 = 0;
+  var dom_21 = 0;
+
+
 
 
   anychart.onDocumentReady(function () {
@@ -309,71 +377,82 @@
 
   function getDataA() {
     return [
-      { x: "Seg", y: "00:00", heat: 10 },
-      { x: "Ter", y: "00:00", heat: 10 },
-      { x: "Qua", y: "00:00", heat: 10 },
-      { x: "Qui", y: "00:00", heat: 10 },
-      { x: "Sex", y: "00:00", heat: 15 },
-      { x: "Sab", y: "00:00", heat: 20 },
-      { x: "Dom", y: "00:00", heat: 15 },
+      { x: "Seg", y: "00:00", heat: seg_00 },
+      { x: "Ter", y: "00:00", heat: ter_00 },
+      { x: "Qua", y: "00:00", heat: qua_00 },
+      { x: "Qui", y: "00:00", heat: qui_00 },
+      { x: "Sex", y: "00:00", heat: sex_00 },
+      { x: "Sab", y: "00:00", heat: sab_00 },
+      { x: "Dom", y: "00:00", heat: dom_00 },
 
-      { x: "Seg", y: "03:00", heat: 10 },
-      { x: "Ter", y: "03:00", heat: 10 },
-      { x: "Qua", y: "03:00", heat: 10 },
-      { x: "Qui", y: "03:00", heat: 10 },
-      { x: "Sex", y: "03:00", heat: 20 },
-      { x: "Sab", y: "03:00", heat: 30 },
-      { x: "Dom", y: "03:00", heat: 20 },
+      { x: "Seg", y: "03:00", heat: seg_03 },
+      { x: "Ter", y: "03:00", heat: ter_03 },
+      { x: "Qua", y: "03:00", heat: qua_03 },
+      { x: "Qui", y: "03:00", heat: qui_03 },
+      { x: "Sex", y: "03:00", heat: sex_03 },
+      { x: "Sab", y: "03:00", heat: sab_03 },
+      { x: "Dom", y: "03:00", heat: dom_03 },
 
-      { x: "Seg", y: "06:00", heat: 40 },
-      { x: "Ter", y: "06:00", heat: 50 },
-      { x: "Qua", y: "06:00", heat: 50 },
-      { x: "Qui", y: "06:00", heat: 40 },
-      { x: "Sex", y: "06:00", heat: 60 },
-      { x: "Sab", y: "06:00", heat: 80 },
-      { x: "Dom", y: "06:00", heat: 40 },
+      { x: "Seg", y: "06:00", heat: seg_06 },
+      { x: "Ter", y: "06:00", heat: ter_06 },
+      { x: "Qua", y: "06:00", heat: qua_06 },
+      { x: "Qui", y: "06:00", heat: qui_06 },
+      { x: "Sex", y: "06:00", heat: sex_06 },
+      { x: "Sab", y: "06:00", heat: sab_06 },
+      { x: "Dom", y: "06:00", heat: dom_06 },
 
-      { x: "Seg", y: "09:00", heat: 100 },
-      { x: "Ter", y: "09:00", heat: 110 },
-      { x: "Qua", y: "09:00", heat: 110 },
-      { x: "Qui", y: "09:00", heat: 90 },
-      { x: "Sex", y: "09:00", heat: 120 },
-      { x: "Sab", y: "09:00", heat: 140 },
-      { x: "Dom", y: "09:00", heat: 100 },
+      { x: "Seg", y: "09:00", heat: seg_09 },
+      { x: "Ter", y: "09:00", heat: ter_09 },
+      { x: "Qua", y: "09:00", heat: qua_09 },
+      { x: "Qui", y: "09:00", heat: qui_09 },
+      { x: "Sex", y: "09:00", heat: sex_09 },
+      { x: "Sab", y: "09:00", heat: sab_09 },
+      { x: "Dom", y: "09:00", heat: dom_09 },
 
-      { x: "Seg", y: "12:00", heat: 150 },
-      { x: "Ter", y: "12:00", heat: 160 },
-      { x: "Qua", y: "12:00", heat: 160 },
-      { x: "Qui", y: "12:00", heat: 140 },
-      { x: "Sex", y: "12:00", heat: 170 },
-      { x: "Sab", y: "12:00", heat: 210 },
-      { x: "Dom", y: "12:00", heat: 150 },
+      { x: "Seg", y: "12:00", heat: seg_12 },
+      { x: "Ter", y: "12:00", heat: ter_12 },
+      { x: "Qua", y: "12:00", heat: qua_12 },
+      { x: "Qui", y: "12:00", heat: qui_12 },
+      { x: "Sex", y: "12:00", heat: sex_12 },
+      { x: "Sab", y: "12:00", heat: sab_12 },
+      { x: "Dom", y: "12:00", heat: dom_12 },
 
-      { x: "Seg", y: "15:00", heat: 160 },
-      { x: "Ter", y: "15:00", heat: 170 },
-      { x: "Qua", y: "15:00", heat: 170 },
-      { x: "Qui", y: "15:00", heat: 150 },
-      { x: "Sex", y: "15:00", heat: 180 },
-      { x: "Sab", y: "15:00", heat: 220 },
-      { x: "Dom", y: "15:00", heat: 160 },
+      { x: "Seg", y: "15:00", heat: seg_15 },
+      { x: "Ter", y: "15:00", heat: ter_15 },
+      { x: "Qua", y: "15:00", heat: qua_15 },
+      { x: "Qui", y: "15:00", heat: qui_15 },
+      { x: "Sex", y: "15:00", heat: sex_15 },
+      { x: "Sab", y: "15:00", heat: sab_15 },
+      { x: "Dom", y: "15:00", heat: dom_15 },
 
-      { x: "Seg", y: "18:00", heat: 130 },
-      { x: "Ter", y: "18:00", heat: 140 },
-      { x: "Qua", y: "18:00", heat: 140 },
-      { x: "Qui", y: "18:00", heat: 120 },
-      { x: "Sex", y: "18:00", heat: 160 },
-      { x: "Sab", y: "18:00", heat: 200 },
-      { x: "Dom", y: "18:00", heat: 130 },
+      { x: "Seg", y: "18:00", heat: seg_18 },
+      { x: "Ter", y: "18:00", heat: ter_18 },
+      { x: "Qua", y: "18:00", heat: qua_18 },
+      { x: "Qui", y: "18:00", heat: qui_18 },
+      { x: "Sex", y: "18:00", heat: sex_18 },
+      { x: "Sab", y: "18:00", heat: sab_18 },
+      { x: "Dom", y: "18:00", heat: dom_18 },
 
-      { x: "Seg", y: "21:00", heat: 60 },
-      { x: "Ter", y: "21:00", heat: 70 },
-      { x: "Qua", y: "21:00", heat: 70 },
-      { x: "Qui", y: "21:00", heat: 50 },
-      { x: "Sex", y: "21:00", heat: 80 },
-      { x: "Sab", y: "21:00", heat: 100 },
-      { x: "Dom", y: "21:00", heat: 60 },
+      { x: "Seg", y: "21:00", heat: seg_21 },
+      { x: "Ter", y: "21:00", heat: ter_21 },
+      { x: "Qua", y: "21:00", heat: qua_21 },
+      { x: "Qui", y: "21:00", heat: qui_21 },
+      { x: "Sex", y: "21:00", heat: sex_21 },
+      { x: "Sab", y: "21:00", heat: sab_21 },
+      { x: "Dom", y: "21:00", heat: dom_21 },
     ];
   }
+
+
+
+
+
+
+
+
+
+
+
 
   function kpiTotal(resposta1) {
     let registro = resposta1[0].total;

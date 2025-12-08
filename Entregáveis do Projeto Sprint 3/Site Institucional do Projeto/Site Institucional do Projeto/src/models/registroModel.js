@@ -16,13 +16,14 @@ function buscarUltimosRegistros(fkShopping, limite_linhas) {
 
 function buscarRegistrosEmTempoReal(fkShopping) {
   var instrucaoSql = `SELECT 
-                        SUM(r.valor) as pessoas,
-                        DATE_FORMAT(r.dtHora,'%H:%i') as momento_grafico 
-                        FROM registro r
-                        JOIN sensor s ON r.fkSensor = s.idSensor 
-                        WHERE s.fkEntrada = ${fkShopping}
-                        GROUP BY r.dtHora
-                    ORDER BY r.dtHora DESC LIMIT 1`;
+    SUM(r.valor) AS pessoas,
+    DATE_FORMAT(r.dtHora, '%H:%i') AS hora
+FROM registro r
+JOIN sensor s ON r.fkSensor = s.idSensor
+WHERE s.fkEntrada = ${fkShopping}
+GROUP BY r.dtHora
+ORDER BY r.dtHora DESC
+LIMIT 1;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
