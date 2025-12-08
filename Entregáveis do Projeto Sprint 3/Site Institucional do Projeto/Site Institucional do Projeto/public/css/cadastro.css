@@ -5,13 +5,15 @@
     font: normal 20px Arial;
 }
 
+
 body {
     min-height: 100vh;
     background-color: #6e4c7f18;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
+    padding: 0;
 }
 header {
     background-color: #8e44ad;
