@@ -81,6 +81,44 @@ body {
 }
 
 
+.bloco-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #f3b9eb;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.explicacao {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+
+.link-container a {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #522763; 
+    text-decoration: none; 
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.link-container a:hover {
+    background-color: #813894; 
+}
+
+
 .kpis {
     display: flex;
     flex-wrap: wrap;
