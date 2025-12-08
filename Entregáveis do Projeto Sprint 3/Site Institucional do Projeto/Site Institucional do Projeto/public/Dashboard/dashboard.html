@@ -125,49 +125,49 @@
   }
 
   fetch(`/registros/totalVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta1) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta1)}`);
-          kpiTotal(resposta1);
+    if (response.ok) {
+      response.json().then(function (resposta1) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta1)}`);
+        kpiTotal(resposta1);
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 
-      fetch(`/registros/picoVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta2) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
-          kpiPico(resposta2);
+  fetch(`/registros/picoVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta2) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
+        kpiPico(resposta2);
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 
-      fetch(`/registros/mediaVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta3) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta3)}`);
-          kpiMedia(resposta3);
+  fetch(`/registros/mediaVisitantes/${fkShopping}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta3) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta3)}`);
+        kpiMedia(resposta3);
 
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 
 
   function plotarGrafico(resposta, fkShopping) {
@@ -375,24 +375,24 @@
     ];
   }
 
-    function kpiTotal(resposta1) {
-  let registro = resposta1[0].total;
-  totalVisitantes.innerHTML = registro + ' pessoas';
-  console.log(registro);
-}
+  function kpiTotal(resposta1) {
+    let registro = resposta1[0].total;
+    totalVisitantes.innerHTML = registro + ' pessoas';
+    console.log(registro);
+  }
 
-function kpiPico(resposta2) {
- let registro = resposta2[0].hora;
- picoVisitantes.innerHTML = registro + 'h';
- console.log(registro);
-}
+  function kpiPico(resposta2) {
+    let registro = resposta2[0].hora;
+    picoVisitantes.innerHTML = registro + 'h';
+    console.log(registro);
+  }
 
-function kpiMedia(resposta3) {
+  function kpiMedia(resposta3) {
 
-  let registro = resposta3[0].media;
-  mediaHora.innerHTML = registro + ' pessoas';
-  console.log(resposta3)
-}
+    let registro = resposta3[0].media;
+    mediaHora.innerHTML = registro + ' pessoas';
+    console.log(resposta3)
+  }
 
 </script>
 
